@@ -1,0 +1,43 @@
+
+# Api Credential Links
+
+## Structure
+
+`ApiCredentialLinks`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `allowedOrigins` | [`?LinksElement1`](../../doc/models/links-element-1.md) | Optional | List of allowed origins. | getAllowedOrigins(): ?LinksElement1 | setAllowedOrigins(?LinksElement1 allowedOrigins): void |
+| `company` | [`?LinksElement2`](../../doc/models/links-element-2.md) | Optional | Company account that the API credential is linked to. Only present for company-level webhooks. | getCompany(): ?LinksElement2 | setCompany(?LinksElement2 company): void |
+| `generateApiKey` | [`?LinksElement3`](../../doc/models/links-element-3.md) | Optional | Generates a new API key. When you generate a new one, the existing key remains valid for 24 hours. | getGenerateApiKey(): ?LinksElement3 | setGenerateApiKey(?LinksElement3 generateApiKey): void |
+| `generateClientKey` | [`?LinksElement4`](../../doc/models/links-element-4.md) | Optional | Generates a new client key, used to authenticate client-side requests. When you generate a new one, the existing key remains valid for 24 hours. | getGenerateClientKey(): ?LinksElement4 | setGenerateClientKey(?LinksElement4 generateClientKey): void |
+| `merchant` | [`?LinksElement5`](../../doc/models/links-element-5.md) | Optional | The merchant account that the API credential is linked to. Only present for merchant-level API credentials. | getMerchant(): ?LinksElement5 | setMerchant(?LinksElement5 merchant): void |
+| `self` | [`LinksElement6`](../../doc/models/links-element-6.md) | Required | Link to the resource itself. | getSelf(): LinksElement6 | setSelf(LinksElement6 self): void |
+
+## Example (as JSON)
+
+```json
+{
+  "allowedOrigins": {
+    "href": "href6"
+  },
+  "company": {
+    "href": "href2"
+  },
+  "generateApiKey": {
+    "href": "href6"
+  },
+  "generateClientKey": {
+    "href": "href4"
+  },
+  "merchant": {
+    "href": "href6"
+  },
+  "self": {
+    "href": "href0"
+  }
+}
+```
+

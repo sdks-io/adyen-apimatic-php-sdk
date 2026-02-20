@@ -98,29 +98,29 @@ Have a look at the [release notes](https://docs.adyen.com/release-notes/manageme
 Run the following command to install the package and automatically add the dependency to your composer.json file:
 
 ```bash
-composer require "apimatic-adyen/adyen-apimatic-sdk:1.0.0"
+composer require "apimatic-adyen/adyen-apimatic-sdk:1.0.1"
 ```
 
 Or add it to the composer.json file manually as given below:
 
 ```json
 "require": {
-    "apimatic-adyen/adyen-apimatic-sdk": "1.0.0"
+    "apimatic-adyen/adyen-apimatic-sdk": "1.0.1"
 }
 ```
 
 You can also view the package at:
-https://packagist.org/packages/apimatic-adyen/adyen-apimatic-sdk#1.0.0
+https://packagist.org/packages/apimatic-adyen/adyen-apimatic-sdk#1.0.1
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| environment | [`Environment`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/README.md#environments) | The API environment. <br> **Default: `Environment.PRODUCTION`** |
+| environment | [`Environment`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/README.md#environments) | The API environment. <br> **Default: `Environment.PRODUCTION`** |
 | timeout | `int` | Timeout for API calls in seconds.<br>*Default*: `30` |
 | enableRetries | `bool` | Whether to enable retries and backoff feature.<br>*Default*: `false` |
 | numberOfRetries | `int` | The number of retries to make.<br>*Default*: `0` |
@@ -130,10 +130,10 @@ The following parameters are configurable for the API Client:
 | retryOnTimeout | `bool` | Whether to retry on request timeout.<br>*Default*: `true` |
 | httpStatusCodesToRetry | `array` | Http status codes to retry against.<br>*Default*: `408, 413, 429, 500, 502, 503, 504, 521, 522, 524` |
 | httpMethodsToRetry | `array` | Http methods to retry against.<br>*Default*: `'GET', 'PUT'` |
-| loggingConfiguration | [`LoggingConfigurationBuilder`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/logging-configuration-builder.md) | Represents the logging configurations for API calls |
-| proxyConfiguration | [`ProxyConfigurationBuilder`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/proxy-configuration-builder.md) | Represents the proxy configurations for API calls |
-| apiKeyAuthCredentials | [`ApiKeyAuthCredentials`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
-| basicAuthCredentials | [`BasicAuthCredentials`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
+| loggingConfiguration | [`LoggingConfigurationBuilder`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/logging-configuration-builder.md) | Represents the logging configurations for API calls |
+| proxyConfiguration | [`ProxyConfigurationBuilder`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/proxy-configuration-builder.md) | Represents the proxy configurations for API calls |
+| apiKeyAuthCredentials | [`ApiKeyAuthCredentials`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
+| basicAuthCredentials | [`BasicAuthCredentials`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
 
 The API client can be initialized as follows:
 
@@ -183,62 +183,62 @@ The SDK can be configured to use a different environment for making API calls. A
 
 This API uses the following authentication schemes.
 
-* [`ApiKeyAuth (Custom Header Signature)`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/auth/custom-header-signature.md)
-* [`BasicAuth (Basic Authentication)`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/auth/basic-authentication.md)
+* [`ApiKeyAuth (Custom Header Signature)`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/auth/custom-header-signature.md)
+* [`BasicAuth (Basic Authentication)`](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/auth/basic-authentication.md)
 
 ## List of APIs
 
-* [Paymentlinks](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/paymentlinks.md)
-* [Account-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/account-companylevel.md)
-* [Account-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/account-merchantlevel.md)
-* [Account-Storelevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/account-storelevel.md)
-* [Payoutsettings-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/payoutsettings-merchantlevel.md)
-* [Users-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/users-companylevel.md)
-* [Users-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/users-merchantlevel.md)
-* [My AP Icredential](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/my-ap-icredential.md)
-* [AP Icredentials-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/ap-icredentials-companylevel.md)
-* [AP Icredentials-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/ap-icredentials-merchantlevel.md)
-* [AP Ikey-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/ap-ikey-companylevel.md)
-* [AP Ikey-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/ap-ikey-merchantlevel.md)
-* [Clientkey-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/clientkey-companylevel.md)
-* [Clientkey-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/clientkey-merchantlevel.md)
-* [Allowedorigins-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/allowedorigins-companylevel.md)
-* [Allowedorigins-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/allowedorigins-merchantlevel.md)
-* [Webhooks-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/webhooks-companylevel.md)
-* [Webhooks-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/webhooks-merchantlevel.md)
-* [Paymentmethods-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/paymentmethods-merchantlevel.md)
-* [Terminals-Terminallevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminals-terminallevel.md)
-* [Terminalactions-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalactions-companylevel.md)
-* [Terminalactions-Terminallevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalactions-terminallevel.md)
-* [Terminalorders-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalorders-companylevel.md)
-* [Terminalorders-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalorders-merchantlevel.md)
-* [Terminalsettings-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalsettings-companylevel.md)
-* [Terminalsettings-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalsettings-merchantlevel.md)
-* [Terminalsettings-Storelevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalsettings-storelevel.md)
-* [Terminalsettings-Terminallevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/terminalsettings-terminallevel.md)
-* [Androidfiles-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/androidfiles-companylevel.md)
-* [Splitconfiguration-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/splitconfiguration-merchantlevel.md)
-* [Payments](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/payments.md)
-* [Donations](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/donations.md)
-* [Modifications](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/modifications.md)
-* [Recurring](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/recurring.md)
-* [Orders](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/orders.md)
-* [Utility](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/controllers/utility.md)
+* [Paymentlinks](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/paymentlinks.md)
+* [Account-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/account-companylevel.md)
+* [Account-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/account-merchantlevel.md)
+* [Account-Storelevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/account-storelevel.md)
+* [Payoutsettings-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/payoutsettings-merchantlevel.md)
+* [Users-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/users-companylevel.md)
+* [Users-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/users-merchantlevel.md)
+* [My AP Icredential](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/my-ap-icredential.md)
+* [AP Icredentials-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/ap-icredentials-companylevel.md)
+* [AP Icredentials-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/ap-icredentials-merchantlevel.md)
+* [AP Ikey-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/ap-ikey-companylevel.md)
+* [AP Ikey-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/ap-ikey-merchantlevel.md)
+* [Clientkey-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/clientkey-companylevel.md)
+* [Clientkey-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/clientkey-merchantlevel.md)
+* [Allowedorigins-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/allowedorigins-companylevel.md)
+* [Allowedorigins-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/allowedorigins-merchantlevel.md)
+* [Webhooks-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/webhooks-companylevel.md)
+* [Webhooks-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/webhooks-merchantlevel.md)
+* [Paymentmethods-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/paymentmethods-merchantlevel.md)
+* [Terminals-Terminallevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminals-terminallevel.md)
+* [Terminalactions-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalactions-companylevel.md)
+* [Terminalactions-Terminallevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalactions-terminallevel.md)
+* [Terminalorders-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalorders-companylevel.md)
+* [Terminalorders-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalorders-merchantlevel.md)
+* [Terminalsettings-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalsettings-companylevel.md)
+* [Terminalsettings-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalsettings-merchantlevel.md)
+* [Terminalsettings-Storelevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalsettings-storelevel.md)
+* [Terminalsettings-Terminallevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/terminalsettings-terminallevel.md)
+* [Androidfiles-Companylevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/androidfiles-companylevel.md)
+* [Splitconfiguration-Merchantlevel](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/splitconfiguration-merchantlevel.md)
+* [Payments](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/payments.md)
+* [Donations](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/donations.md)
+* [Modifications](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/modifications.md)
+* [Recurring](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/recurring.md)
+* [Orders](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/orders.md)
+* [Utility](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/controllers/utility.md)
 
 ## SDK Infrastructure
 
 ### Configuration
 
-* [ProxyConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/proxy-configuration-builder.md)
-* [LoggingConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/logging-configuration-builder.md)
-* [RequestLoggingConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/request-logging-configuration-builder.md)
-* [ResponseLoggingConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/response-logging-configuration-builder.md)
+* [ProxyConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/proxy-configuration-builder.md)
+* [LoggingConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/logging-configuration-builder.md)
+* [RequestLoggingConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/request-logging-configuration-builder.md)
+* [ResponseLoggingConfigurationBuilder](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/response-logging-configuration-builder.md)
 
 ### HTTP
 
-* [HttpRequest](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/http-request.md)
+* [HttpRequest](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/http-request.md)
 
 ### Utilities
 
-* [ApiResponse](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.0/doc/api-response.md)
+* [ApiResponse](https://www.github.com/sdks-io/adyen-apimatic-php-sdk/tree/1.0.1/doc/api-response.md)
 

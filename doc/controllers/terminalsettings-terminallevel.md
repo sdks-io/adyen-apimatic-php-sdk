@@ -10,13 +10,13 @@ $terminalsettingsTerminallevelApi = $client->getTerminalsettingsTerminallevelApi
 
 ## Methods
 
-* [Get-Terminals-Terminal Id-Terminal Logos](../../doc/controllers/terminalsettings-terminallevel.md#get-terminals-terminal-id-terminal-logos)
-* [Patch-Terminals-Terminal Id-Terminal Logos](../../doc/controllers/terminalsettings-terminallevel.md#patch-terminals-terminal-id-terminal-logos)
-* [Get-Terminals-Terminal Id-Terminal Settings](../../doc/controllers/terminalsettings-terminallevel.md#get-terminals-terminal-id-terminal-settings)
-* [Patch-Terminals-Terminal Id-Terminal Settings](../../doc/controllers/terminalsettings-terminallevel.md#patch-terminals-terminal-id-terminal-settings)
+* [Get Terminal Logo](../../doc/controllers/terminalsettings-terminallevel.md#get-terminal-logo)
+* [Update Terminal Logo](../../doc/controllers/terminalsettings-terminallevel.md#update-terminal-logo)
+* [Get Terminal Settings](../../doc/controllers/terminalsettings-terminallevel.md#get-terminal-settings)
+* [Update Terminal Settings](../../doc/controllers/terminalsettings-terminallevel.md#update-terminal-settings)
 
 
-# Get-Terminals-Terminal Id-Terminal Logos
+# Get Terminal Logo
 
 Returns the logo that is configured for the payment terminal identified in the path.
 The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.
@@ -29,7 +29,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getTerminalsTerminalIdTerminalLogos(string $terminalId): ApiResponse
+function getTerminalLogo(string $terminalId): ApiResponse
 ```
 
 ## Parameters
@@ -48,7 +48,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $terminalId = 'terminalId2';
 
 $terminalSettingsTerminalLevelApi = $client->getTerminalSettingsTerminalLevelApi();
-$apiResponse = $terminalSettingsTerminalLevelApi->getTerminalsTerminalIdTerminalLogos($terminalId);
+$apiResponse = $terminalSettingsTerminalLevelApi->getTerminalLogo($terminalId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -83,7 +83,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Terminals-Terminal Id-Terminal Logos
+# Update Terminal Logo
 
 Updates the logo for the payment terminal identified in the path.
 
@@ -97,7 +97,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchTerminalsTerminalIdTerminalLogos(string $terminalId, ?Logo $body = null): ApiResponse
+function updateTerminalLogo(string $terminalId, ?Logo $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -121,7 +121,7 @@ $body = LogoBuilder::init()
     ->build();
 
 $terminalSettingsTerminalLevelApi = $client->getTerminalSettingsTerminalLevelApi();
-$apiResponse = $terminalSettingsTerminalLevelApi->patchTerminalsTerminalIdTerminalLogos(
+$apiResponse = $terminalSettingsTerminalLevelApi->updateTerminalLogo(
     $terminalId,
     $body
 );
@@ -159,7 +159,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Terminals-Terminal Id-Terminal Settings
+# Get Terminal Settings
 
 Returns the settings that are configured for the payment terminal identified in the path.
 
@@ -175,7 +175,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getTerminalsTerminalIdTerminalSettings(string $terminalId): ApiResponse
+function getTerminalSettings(string $terminalId): ApiResponse
 ```
 
 ## Parameters
@@ -194,7 +194,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $terminalId = 'terminalId2';
 
 $terminalSettingsTerminalLevelApi = $client->getTerminalSettingsTerminalLevelApi();
-$apiResponse = $terminalSettingsTerminalLevelApi->getTerminalsTerminalIdTerminalSettings($terminalId);
+$apiResponse = $terminalSettingsTerminalLevelApi->getTerminalSettings($terminalId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -350,7 +350,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Terminals-Terminal Id-Terminal Settings
+# Update Terminal Settings
 
 Updates the settings that are configured for the payment terminal identified in the path.
 
@@ -369,10 +369,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchTerminalsTerminalIdTerminalSettings(
-    string $terminalId,
-    ?TerminalSettings $body = null
-): ApiResponse
+function updateTerminalSettings(string $terminalId, ?TerminalSettings $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -450,7 +447,7 @@ $body = TerminalSettingsBuilder::init()
     ->build();
 
 $terminalSettingsTerminalLevelApi = $client->getTerminalSettingsTerminalLevelApi();
-$apiResponse = $terminalSettingsTerminalLevelApi->patchTerminalsTerminalIdTerminalSettings(
+$apiResponse = $terminalSettingsTerminalLevelApi->updateTerminalSettings(
     $terminalId,
     $body
 );

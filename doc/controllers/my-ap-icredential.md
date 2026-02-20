@@ -10,22 +10,22 @@ $myApIcredentialApi = $client->getMyApIcredentialApi();
 
 ## Methods
 
-* [Get-Me](../../doc/controllers/my-ap-icredential.md#get-me)
-* [Get-Me-Allowed Origins](../../doc/controllers/my-ap-icredential.md#get-me-allowed-origins)
-* [Post-Me-Allowed Origins](../../doc/controllers/my-ap-icredential.md#post-me-allowed-origins)
-* [Delete-Me-Allowed Origins-Origin Id](../../doc/controllers/my-ap-icredential.md#delete-me-allowed-origins-origin-id)
-* [Get-Me-Allowed Origins-Origin Id](../../doc/controllers/my-ap-icredential.md#get-me-allowed-origins-origin-id)
-* [Post-Me-Generate Client Key](../../doc/controllers/my-ap-icredential.md#post-me-generate-client-key)
+* [Get My Api Credential](../../doc/controllers/my-ap-icredential.md#get-my-api-credential)
+* [List My Allowed Origins](../../doc/controllers/my-ap-icredential.md#list-my-allowed-origins)
+* [Create My Allowed Origin](../../doc/controllers/my-ap-icredential.md#create-my-allowed-origin)
+* [Delete My Allowed Origin](../../doc/controllers/my-ap-icredential.md#delete-my-allowed-origin)
+* [Get My Allowed Origin](../../doc/controllers/my-ap-icredential.md#get-my-allowed-origin)
+* [Generate My Client Key](../../doc/controllers/my-ap-icredential.md#generate-my-client-key)
 
 
-# Get-Me
+# Get My Api Credential
 
 Returns your [API credential](https://docs.adyen.com/development-resources/api-credentials) details based on the API Key you used in the request.
 
 You can make this request with any of the Management API roles.
 
 ```php
-function getMe(): ApiResponse
+function getMyApiCredential(): ApiResponse
 ```
 
 ## Response Type
@@ -36,7 +36,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 
 ```php
 $myApiCredentialApi = $client->getMyApiCredentialApi();
-$apiResponse = $myApiCredentialApi->getMe();
+$apiResponse = $myApiCredentialApi->getMyApiCredential();
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -63,14 +63,14 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Me-Allowed Origins
+# List My Allowed Origins
 
 Returns the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your [API credential](https://docs.adyen.com/development-resources/api-credentials) based on the API key you used in the request.
 
 You can make this request with any of the Management API roles.
 
 ```php
-function getMeAllowedOrigins(): ApiResponse
+function listMyAllowedOrigins(): ApiResponse
 ```
 
 ## Response Type
@@ -81,7 +81,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 
 ```php
 $myApiCredentialApi = $client->getMyApiCredentialApi();
-$apiResponse = $myApiCredentialApi->getMeAllowedOrigins();
+$apiResponse = $myApiCredentialApi->listMyAllowedOrigins();
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -108,7 +108,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Me-Allowed Origins
+# Create My Allowed Origin
 
 Adds an allowed origin to the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your API credential.
 The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).
@@ -116,7 +116,7 @@ The API key from the request is used to identify the [API credential](https://do
 You can make this request with any of the Management API roles.
 
 ```php
-function postMeAllowedOrigins(?CreateAllowedOriginRequest $body = null): ApiResponse
+function createMyAllowedOrigin(?CreateAllowedOriginRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -137,7 +137,7 @@ $body = CreateAllowedOriginRequestBuilder::init(
 )->build();
 
 $myApiCredentialApi = $client->getMyApiCredentialApi();
-$apiResponse = $myApiCredentialApi->postMeAllowedOrigins($body);
+$apiResponse = $myApiCredentialApi->createMyAllowedOrigin($body);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -164,7 +164,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Me-Allowed Origins-Origin Id
+# Delete My Allowed Origin
 
 Removes the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path.
 The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).
@@ -172,7 +172,7 @@ The API key from the request is used to identify the [API credential](https://do
 You can make this request with any of the Management API roles.
 
 ```php
-function deleteMeAllowedOriginsOriginId(string $originId): ApiResponse
+function deleteMyAllowedOrigin(string $originId): ApiResponse
 ```
 
 ## Parameters
@@ -191,7 +191,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 $originId = 'originId6';
 
 $myApiCredentialApi = $client->getMyApiCredentialApi();
-$apiResponse = $myApiCredentialApi->deleteMeAllowedOriginsOriginId($originId);
+$apiResponse = $myApiCredentialApi->deleteMyAllowedOrigin($originId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -218,7 +218,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Me-Allowed Origins-Origin Id
+# Get My Allowed Origin
 
 Returns the details of the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path.
 The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).
@@ -226,7 +226,7 @@ The API key from the request is used to identify the [API credential](https://do
 You can make this request with any of the Management API roles.
 
 ```php
-function getMeAllowedOriginsOriginId(string $originId): ApiResponse
+function getMyAllowedOrigin(string $originId): ApiResponse
 ```
 
 ## Parameters
@@ -245,7 +245,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $originId = 'originId6';
 
 $myApiCredentialApi = $client->getMyApiCredentialApi();
-$apiResponse = $myApiCredentialApi->getMeAllowedOriginsOriginId($originId);
+$apiResponse = $myApiCredentialApi->getMyAllowedOrigin($originId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -272,7 +272,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Me-Generate Client Key
+# Generate My Client Key
 
 Generates a new [client key](https://docs.adyen.com/development-resources/client-side-authentication/) used to authenticate requests from your payment environment.
 You can use the new client key a few minutes after generating it.
@@ -283,7 +283,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—API credentials read and write
 
 ```php
-function postMeGenerateClientKey(): ApiResponse
+function generateMyClientKey(): ApiResponse
 ```
 
 ## Response Type
@@ -294,7 +294,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 
 ```php
 $myApiCredentialApi = $client->getMyApiCredentialApi();
-$apiResponse = $myApiCredentialApi->postMeGenerateClientKey();
+$apiResponse = $myApiCredentialApi->generateMyClientKey();
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());

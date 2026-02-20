@@ -10,16 +10,16 @@ $webhooksMerchantlevelApi = $client->getWebhooksMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Webhooks](../../doc/controllers/webhooks-merchantlevel.md#get-merchants-merchant-id-webhooks)
-* [Post-Merchants-Merchant Id-Webhooks](../../doc/controllers/webhooks-merchantlevel.md#post-merchants-merchant-id-webhooks)
-* [Delete-Merchants-Merchant Id-Webhooks-Webhook Id](../../doc/controllers/webhooks-merchantlevel.md#delete-merchants-merchant-id-webhooks-webhook-id)
-* [Get-Merchants-Merchant Id-Webhooks-Webhook Id](../../doc/controllers/webhooks-merchantlevel.md#get-merchants-merchant-id-webhooks-webhook-id)
-* [Patch-Merchants-Merchant Id-Webhooks-Webhook Id](../../doc/controllers/webhooks-merchantlevel.md#patch-merchants-merchant-id-webhooks-webhook-id)
-* [Post-Merchants-Merchant Id-Webhooks-Webhook Id-Generate Hmac](../../doc/controllers/webhooks-merchantlevel.md#post-merchants-merchant-id-webhooks-webhook-id-generate-hmac)
-* [Post-Merchants-Merchant Id-Webhooks-Webhook Id-Test](../../doc/controllers/webhooks-merchantlevel.md#post-merchants-merchant-id-webhooks-webhook-id-test)
+* [List Merchant Webhooks](../../doc/controllers/webhooks-merchantlevel.md#list-merchant-webhooks)
+* [Create Merchant Webhook](../../doc/controllers/webhooks-merchantlevel.md#create-merchant-webhook)
+* [Delete Merchant Webhook](../../doc/controllers/webhooks-merchantlevel.md#delete-merchant-webhook)
+* [Get Merchant Webhook](../../doc/controllers/webhooks-merchantlevel.md#get-merchant-webhook)
+* [Update Merchant Webhook](../../doc/controllers/webhooks-merchantlevel.md#update-merchant-webhook)
+* [Generate Merchant Webhook Hmac](../../doc/controllers/webhooks-merchantlevel.md#generate-merchant-webhook-hmac)
+* [Test Merchant Webhook](../../doc/controllers/webhooks-merchantlevel.md#test-merchant-webhook)
 
 
-# Get-Merchants-Merchant Id-Webhooks
+# List Merchant Webhooks
 
 Lists all webhook configurations for the merchant account.
 
@@ -31,11 +31,7 @@ To make this request, your API credential must have one of the following [roles]
 * Management API—Webhooks read and write
 
 ```php
-function getMerchantsMerchantIdWebhooks(
-    string $merchantId,
-    ?int $pageNumber = null,
-    ?int $pageSize = null
-): ApiResponse
+function listMerchantWebhooks(string $merchantId, ?int $pageNumber = null, ?int $pageSize = null): ApiResponse
 ```
 
 ## Parameters
@@ -56,7 +52,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $webhooksMerchantLevelApi = $client->getWebhooksMerchantLevelApi();
-$apiResponse = $webhooksMerchantLevelApi->getMerchantsMerchantIdWebhooks($merchantId);
+$apiResponse = $webhooksMerchantLevelApi->listMerchantWebhooks($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -200,7 +196,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Webhooks
+# Create Merchant Webhook
 
 Subscribe to receive webhook notifications about events related to your merchant account. You can add basic authentication to make sure the data is secure.
 
@@ -209,10 +205,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function postMerchantsMerchantIdWebhooks(
-    string $merchantId,
-    ?CreateMerchantWebhookRequest $body = null
-): ApiResponse
+function createMerchantWebhook(string $merchantId, ?CreateMerchantWebhookRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -246,7 +239,7 @@ $body = CreateMerchantWebhookRequestBuilder::init(
     ->build();
 
 $webhooksMerchantLevelApi = $client->getWebhooksMerchantLevelApi();
-$apiResponse = $webhooksMerchantLevelApi->postMerchantsMerchantIdWebhooks(
+$apiResponse = $webhooksMerchantLevelApi->createMerchantWebhook(
     $merchantId,
     $body
 );
@@ -377,7 +370,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Merchants-Merchant Id-Webhooks-Webhook Id
+# Delete Merchant Webhook
 
 Remove the configuration for the webhook identified in the path.
 
@@ -386,7 +379,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function deleteMerchantsMerchantIdWebhooksWebhookId(string $merchantId, string $webhookId): ApiResponse
+function deleteMerchantWebhook(string $merchantId, string $webhookId): ApiResponse
 ```
 
 ## Parameters
@@ -408,7 +401,7 @@ $merchantId = 'merchantId6';
 $webhookId = 'webhookId6';
 
 $webhooksMerchantLevelApi = $client->getWebhooksMerchantLevelApi();
-$apiResponse = $webhooksMerchantLevelApi->deleteMerchantsMerchantIdWebhooksWebhookId(
+$apiResponse = $webhooksMerchantLevelApi->deleteMerchantWebhook(
     $merchantId,
     $webhookId
 );
@@ -438,7 +431,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Webhooks-Webhook Id
+# Get Merchant Webhook
 
 Returns the configuration for the webhook identified in the path.
 
@@ -448,7 +441,7 @@ To make this request, your API credential must have one of the following [roles]
 * Management API—Webhooks read and write
 
 ```php
-function getMerchantsMerchantIdWebhooksWebhookId(string $merchantId, string $webhookId): ApiResponse
+function getMerchantWebhook(string $merchantId, string $webhookId): ApiResponse
 ```
 
 ## Parameters
@@ -470,7 +463,7 @@ $merchantId = 'merchantId6';
 $webhookId = 'webhookId6';
 
 $webhooksMerchantLevelApi = $client->getWebhooksMerchantLevelApi();
-$apiResponse = $webhooksMerchantLevelApi->getMerchantsMerchantIdWebhooksWebhookId(
+$apiResponse = $webhooksMerchantLevelApi->getMerchantWebhook(
     $merchantId,
     $webhookId
 );
@@ -600,7 +593,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Webhooks-Webhook Id
+# Update Merchant Webhook
 
 Make changes to the configuration of the webhook identified in the path. The request contains the new values you want to have in the webhook configuration. The response contains the full configuration for the webhook, which includes the new values from the request.
 
@@ -609,7 +602,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function patchMerchantsMerchantIdWebhooksWebhookId(
+function updateMerchantWebhook(
     string $merchantId,
     string $webhookId,
     ?UpdateMerchantWebhookRequest $body = null
@@ -640,7 +633,7 @@ $body = UpdateMerchantWebhookRequestBuilder::init()
     ->build();
 
 $webhooksMerchantLevelApi = $client->getWebhooksMerchantLevelApi();
-$apiResponse = $webhooksMerchantLevelApi->patchMerchantsMerchantIdWebhooksWebhookId(
+$apiResponse = $webhooksMerchantLevelApi->updateMerchantWebhook(
     $merchantId,
     $webhookId,
     $body
@@ -771,7 +764,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Webhooks-Webhook Id-Generate Hmac
+# Generate Merchant Webhook Hmac
 
 Returns an [HMAC key](https://en.wikipedia.org/wiki/HMAC) for the webhook identified in the path. This key allows you to check the integrity and the origin of the notifications you receive.By creating an HMAC key, you start receiving [HMAC-signed notifications](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures#enable-hmac-signatures) from Adyen. Find out more about how to [verify HMAC signatures](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures).
 
@@ -780,10 +773,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function postMerchantsMerchantIdWebhooksWebhookIdGenerateHmac(
-    string $merchantId,
-    string $webhookId
-): ApiResponse
+function generateMerchantWebhookHmac(string $merchantId, string $webhookId): ApiResponse
 ```
 
 ## Parameters
@@ -805,7 +795,7 @@ $merchantId = 'merchantId6';
 $webhookId = 'webhookId6';
 
 $webhooksMerchantLevelApi = $client->getWebhooksMerchantLevelApi();
-$apiResponse = $webhooksMerchantLevelApi->postMerchantsMerchantIdWebhooksWebhookIdGenerateHmac(
+$apiResponse = $webhooksMerchantLevelApi->generateMerchantWebhookHmac(
     $merchantId,
     $webhookId
 );
@@ -843,7 +833,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Webhooks-Webhook Id-Test
+# Test Merchant Webhook
 
 Sends sample notifications to test if the webhook is set up correctly.
 
@@ -856,7 +846,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function postMerchantsMerchantIdWebhooksWebhookIdTest(
+function testMerchantWebhook(
     string $merchantId,
     string $webhookId,
     ?TestWebhookRequest $body = null
@@ -891,7 +881,7 @@ $body = TestWebhookRequestBuilder::init()
     ->build();
 
 $webhooksMerchantLevelApi = $client->getWebhooksMerchantLevelApi();
-$apiResponse = $webhooksMerchantLevelApi->postMerchantsMerchantIdWebhooksWebhookIdTest(
+$apiResponse = $webhooksMerchantLevelApi->testMerchantWebhook(
     $merchantId,
     $webhookId,
     $body

@@ -49,7 +49,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdBillingEntities(string $companyId, ?string $name = null): ApiResponse
+    public function listCompanyBillingEntities(string $companyId, ?string $name = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/billingEntities')
             ->server(Server::DEFAULT1)
@@ -116,7 +116,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdShippingLocations(
+    public function listCompanyShippingLocations(
         string $companyId,
         ?string $name = null,
         ?int $offset = null,
@@ -187,10 +187,8 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdShippingLocations(
-        string $companyId,
-        ?ShippingLocation $body = null
-    ): ApiResponse {
+    public function createCompanyShippingLocation(string $companyId, ?ShippingLocation $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/companies/{companyId}/shippingLocations')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -256,7 +254,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalModels(string $companyId): ApiResponse
+    public function listCompanyTerminalModels(string $companyId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/terminalModels')
             ->server(Server::DEFAULT1)
@@ -323,7 +321,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalOrders(
+    public function listCompanyTerminalOrders(
         string $companyId,
         ?string $customerOrderReference = null,
         ?string $status = null,
@@ -398,10 +396,8 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdTerminalOrders(
-        string $companyId,
-        ?TerminalOrderRequest $body = null
-    ): ApiResponse {
+    public function createCompanyTerminalOrder(string $companyId, ?TerminalOrderRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/companies/{companyId}/terminalOrders')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -466,7 +462,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalOrdersOrderId(string $companyId, string $orderId): ApiResponse
+    public function getCompanyTerminalOrder(string $companyId, string $orderId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/terminalOrders/{orderId}')
             ->server(Server::DEFAULT1)
@@ -538,7 +534,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchCompaniesCompanyIdTerminalOrdersOrderId(
+    public function updateCompanyTerminalOrder(
         string $companyId,
         string $orderId,
         ?TerminalOrderRequest $body = null
@@ -613,7 +609,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdTerminalOrdersOrderIdCancel(string $companyId, string $orderId): ApiResponse
+    public function cancelCompanyTerminalOrder(string $companyId, string $orderId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::POST,
@@ -690,7 +686,7 @@ class TerminalOrdersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalProducts(
+    public function listCompanyTerminalProducts(
         string $companyId,
         string $country,
         ?string $terminalModelId = null,

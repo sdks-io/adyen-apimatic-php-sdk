@@ -48,7 +48,7 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdStoresReferenceTerminalLogos(
+    public function getMerchantStoreTerminalLogoByReference(
         string $merchantId,
         string $reference,
         string $model
@@ -130,7 +130,7 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdStoresReferenceTerminalLogos(
+    public function updateMerchantStoreTerminalLogoByReference(
         string $merchantId,
         string $reference,
         string $model,
@@ -212,10 +212,8 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdStoresReferenceTerminalSettings(
-        string $merchantId,
-        string $reference
-    ): ApiResponse {
+    public function getMerchantStoreTerminalSettingsByReference(string $merchantId, string $reference): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/merchants/{merchantId}/stores/{reference}/terminalSettings'
@@ -294,7 +292,7 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdStoresReferenceTerminalSettings(
+    public function updateMerchantStoreTerminalSettingsByReference(
         string $merchantId,
         string $reference,
         ?TerminalSettings $body = null
@@ -374,7 +372,7 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getStoresStoreIdTerminalLogos(string $storeId, string $model): ApiResponse
+    public function getStoreTerminalLogo(string $storeId, string $model): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/stores/{storeId}/terminalLogos')
             ->server(Server::DEFAULT1)
@@ -448,7 +446,7 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchStoresStoreIdTerminalLogos(string $storeId, string $model, ?Logo $body = null): ApiResponse
+    public function updateStoreTerminalLogo(string $storeId, string $model, ?Logo $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/stores/{storeId}/terminalLogos')
             ->server(Server::DEFAULT1)
@@ -521,7 +519,7 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getStoresStoreIdTerminalSettings(string $storeId): ApiResponse
+    public function getStoreTerminalSettings(string $storeId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/stores/{storeId}/terminalSettings')
             ->server(Server::DEFAULT1)
@@ -594,7 +592,7 @@ class TerminalSettingsStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchStoresStoreIdTerminalSettings(string $storeId, ?TerminalSettings $body = null): ApiResponse
+    public function updateStoreTerminalSettings(string $storeId, ?TerminalSettings $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/stores/{storeId}/terminalSettings')
             ->server(Server::DEFAULT1)

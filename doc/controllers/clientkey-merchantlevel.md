@@ -9,7 +9,7 @@ $clientkeyMerchantlevelApi = $client->getClientkeyMerchantlevelApi();
 `ClientkeyMerchantlevelApi`
 
 
-# Post-Merchants-Merchant Id-Api Credentials-Api Credential Id-Generate Client Key
+# Generate Merchant Client Key
 
 Returns a new [client key](https://docs.adyen.com/development-resources/client-side-authentication#how-it-works) for the API credential identified in the path. You can use the new client key a few minutes after generating it. The old client key stops working 24 hours after generating a new one.
 
@@ -18,10 +18,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function postMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKey(
-    string $merchantId,
-    string $apiCredentialId
-): ApiResponse
+function generateMerchantClientKey(string $merchantId, string $apiCredentialId): ApiResponse
 ```
 
 ## Parameters
@@ -43,7 +40,7 @@ $merchantId = 'merchantId6';
 $apiCredentialId = 'apiCredentialId8';
 
 $clientKeyMerchantLevelApi = $client->getClientKeyMerchantLevelApi();
-$apiResponse = $clientKeyMerchantLevelApi->postMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKey(
+$apiResponse = $clientKeyMerchantLevelApi->generateMerchantClientKey(
     $merchantId,
     $apiCredentialId
 );

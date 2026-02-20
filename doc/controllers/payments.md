@@ -10,15 +10,15 @@ $paymentsApi = $client->getPaymentsApi();
 
 ## Methods
 
-* [Post-Card Details](../../doc/controllers/payments.md#post-card-details)
-* [Post-Payment Methods](../../doc/controllers/payments.md#post-payment-methods)
-* [Post-Payments](../../doc/controllers/payments.md#post-payments)
-* [Post-Payments-Details](../../doc/controllers/payments.md#post-payments-details)
-* [Post-Sessions](../../doc/controllers/payments.md#post-sessions)
-* [Get-Sessions-Session Id](../../doc/controllers/payments.md#get-sessions-session-id)
+* [Get Card Details](../../doc/controllers/payments.md#get-card-details)
+* [Get Payment Methods](../../doc/controllers/payments.md#get-payment-methods)
+* [Create Payment](../../doc/controllers/payments.md#create-payment)
+* [Get Payment Details](../../doc/controllers/payments.md#get-payment-details)
+* [Create Checkout Session](../../doc/controllers/payments.md#create-checkout-session)
+* [Get Checkout Session](../../doc/controllers/payments.md#get-checkout-session)
 
 
-# Post-Card Details
+# Get Card Details
 
 Use this endpoint to get information about the card or network token that enables you to decide on the routing of the transaction and the eligibility of the card for the type of transaction.
 
@@ -48,7 +48,7 @@ BIN Lookup API is available through a Postman collection. Click the button below
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-677c7679-a695-4ebb-91da-68b4e7c9228a?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-677c7679-a695-4ebb-91da-68b4e7c9228a%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)
 
 ```php
-function postCardDetails(?string $idempotencyKey = null, ?CardDetailsRequest $body = null): ApiResponse
+function getCardDetails(?string $idempotencyKey = null, ?CardDetailsRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -72,7 +72,7 @@ $body = CardDetailsRequestBuilder::init(
     ->build();
 
 $paymentsApi = $client->getPaymentsApi();
-$apiResponse = $paymentsApi->postCardDetails(
+$apiResponse = $paymentsApi->getCardDetails(
     null,
     $body
 );
@@ -112,12 +112,12 @@ if ($apiResponse->isSuccess()) {
 ```
 
 
-# Post-Payment Methods
+# Get Payment Methods
 
 Retrieves the list of available payment methods for the transaction, based on the transaction information like amount, country, and currency.
 
 ```php
-function postPaymentMethods(?string $idempotencyKey = null, ?PaymentMethodsRequest $body = null): ApiResponse
+function getPaymentMethods(?string $idempotencyKey = null, ?PaymentMethodsRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -139,7 +139,7 @@ $body = PaymentMethodsRequestBuilder::init(
 )->build();
 
 $paymentsApi = $client->getPaymentsApi();
-$apiResponse = $paymentsApi->postPaymentMethods(
+$apiResponse = $paymentsApi->getPaymentMethods(
     null,
     $body
 );
@@ -1226,7 +1226,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payments
+# Create Payment
 
 Sends payment parameters (like amount, country, and currency) together with other required input details collected from the shopper. To know more about required parameters for specific payment methods, refer to our [payment method guides](https://docs.adyen.com/payment-methods).
 The response depends on the [payment flow](https://docs.adyen.com/payment-methods#payment-flow):
@@ -1235,7 +1235,7 @@ The response depends on the [payment flow](https://docs.adyen.com/payment-method
 * For a redirect or additional action, the response contains an `action` object.
 
 ```php
-function postPayments(?string $idempotencyKey = null, ?PaymentRequest $body = null): ApiResponse
+function createPayment(?string $idempotencyKey = null, ?PaymentRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -1268,7 +1268,7 @@ $body = PaymentRequestBuilder::init(
 )->build();
 
 $paymentsApi = $client->getPaymentsApi();
-$apiResponse = $paymentsApi->postPayments(
+$apiResponse = $paymentsApi->createPayment(
     null,
     $body
 );
@@ -1314,12 +1314,12 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payments-Details
+# Get Payment Details
 
 Submits details for a payment created using `/payments`. This step is only needed when no final state has been reached on the `/payments` request, for example when the shopper was redirected to another page to complete the payment.
 
 ```php
-function postPaymentsDetails(?string $idempotencyKey = null, ?PaymentDetailsRequest $body = null): ApiResponse
+function getPaymentDetails(?string $idempotencyKey = null, ?PaymentDetailsRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -1343,7 +1343,7 @@ $body = PaymentDetailsRequestBuilder::init(
 )->build();
 
 $paymentsApi = $client->getPaymentsApi();
-$apiResponse = $paymentsApi->postPaymentsDetails(
+$apiResponse = $paymentsApi->getPaymentDetails(
     null,
     $body
 );
@@ -1382,7 +1382,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Sessions
+# Create Checkout Session
 
 Creates a payment session for [Drop-in](https://docs.adyen.com/online-payments/build-your-integration/sessions-flow/?platform=Web&integration=Drop-in), [Components](https://docs.adyen.com/online-payments/build-your-integration/sessions-flow/?platform=Web&integration=Components), and [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/sessions-flow/?platform=Web&integration=Hosted+Checkout) integrations.
 
@@ -1391,7 +1391,10 @@ The response contains encrypted payment session data. The front end then uses th
 You get the payment outcome asynchronously, in an [AUTHORISATION](https://docs.adyen.com/api-explorer/#/Webhooks/latest/post/AUTHORISATION) webhook.
 
 ```php
-function postSessions(?string $idempotencyKey = null, ?CreateCheckoutSessionRequest $body = null): ApiResponse
+function createCheckoutSession(
+    ?string $idempotencyKey = null,
+    ?CreateCheckoutSessionRequest $body = null
+): ApiResponse
 ```
 
 ## Parameters
@@ -1421,7 +1424,7 @@ $body = CreateCheckoutSessionRequestBuilder::init(
     ->build();
 
 $paymentsApi = $client->getPaymentsApi();
-$apiResponse = $paymentsApi->postSessions(
+$apiResponse = $paymentsApi->createCheckoutSession(
     null,
     $body
 );
@@ -1459,12 +1462,12 @@ if ($apiResponse->isSuccess()) {
 ```
 
 
-# Get-Sessions-Session Id
+# Get Checkout Session
 
 Returns the status of the payment session with the `sessionId` and `sessionResult` specified in the path.
 
 ```php
-function getSessionsSessionId(string $sessionId, string $sessionResult): ApiResponse
+function getCheckoutSession(string $sessionId, string $sessionResult): ApiResponse
 ```
 
 ## Parameters
@@ -1486,7 +1489,7 @@ $sessionId = 'sessionId8';
 $sessionResult = 'sessionResult8';
 
 $paymentsApi = $client->getPaymentsApi();
-$apiResponse = $paymentsApi->getSessionsSessionId(
+$apiResponse = $paymentsApi->getCheckoutSession(
     $sessionId,
     $sessionResult
 );

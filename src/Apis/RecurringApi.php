@@ -36,7 +36,7 @@ class RecurringApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postForward(?string $idempotencyKey = null, ?CheckoutForwardRequest $body = null): ApiResponse
+    public function forwardRequest(?string $idempotencyKey = null, ?CheckoutForwardRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/forward')
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -66,7 +66,7 @@ class RecurringApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getStoredPaymentMethods(
+    public function listStoredPaymentMethods(
         ?string $shopperReference = null,
         ?string $merchantAccount = null
     ): ApiResponse {
@@ -92,7 +92,7 @@ class RecurringApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postStoredPaymentMethods(
+    public function createStoredPaymentMethod(
         ?string $idempotencyKey = null,
         ?StoredPaymentMethodRequest $body = null
     ): ApiResponse {
@@ -121,7 +121,7 @@ class RecurringApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteStoredPaymentMethodsStoredPaymentMethodId(
+    public function deleteStoredPaymentMethod(
         string $storedPaymentMethodId,
         string $shopperReference,
         string $merchantAccount

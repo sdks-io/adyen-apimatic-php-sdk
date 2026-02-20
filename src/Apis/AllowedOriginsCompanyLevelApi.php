@@ -36,10 +36,8 @@ class AllowedOriginsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(
-        string $companyId,
-        string $apiCredentialId
-    ): ApiResponse {
+    public function listCompanyApiCredentialOrigins(string $companyId, string $apiCredentialId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins'
@@ -104,7 +102,7 @@ class AllowedOriginsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(
+    public function createCompanyApiCredentialOrigin(
         string $companyId,
         string $apiCredentialId,
         ?AllowedOrigin $body = null
@@ -176,7 +174,7 @@ class AllowedOriginsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+    public function deleteCompanyApiCredentialOrigin(
         string $companyId,
         string $apiCredentialId,
         string $originId
@@ -245,7 +243,7 @@ class AllowedOriginsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+    public function getCompanyApiCredentialOrigin(
         string $companyId,
         string $apiCredentialId,
         string $originId

@@ -43,7 +43,7 @@ class UsersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdUsers(
+    public function listCompanyUsers(
         string $companyId,
         ?int $pageNumber = null,
         ?int $pageSize = null,
@@ -111,7 +111,7 @@ class UsersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdUsers(string $companyId, ?CreateCompanyUserRequest $body = null): ApiResponse
+    public function createCompanyUser(string $companyId, ?CreateCompanyUserRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/companies/{companyId}/users')
             ->server(Server::DEFAULT1)
@@ -174,7 +174,7 @@ class UsersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdUsersUserId(string $companyId, string $userId): ApiResponse
+    public function getCompanyUser(string $companyId, string $userId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/users/{userId}')
             ->server(Server::DEFAULT1)
@@ -237,7 +237,7 @@ class UsersCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchCompaniesCompanyIdUsersUserId(
+    public function updateCompanyUser(
         string $companyId,
         string $userId,
         ?UpdateCompanyUserRequest $body = null

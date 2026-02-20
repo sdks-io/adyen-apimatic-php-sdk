@@ -10,15 +10,15 @@ $paymentmethodsMerchantlevelApi = $client->getPaymentmethodsMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Payment Method Settings](../../doc/controllers/paymentmethods-merchantlevel.md#get-merchants-merchant-id-payment-method-settings)
-* [Post-Merchants-Merchant Id-Payment Method Settings](../../doc/controllers/paymentmethods-merchantlevel.md#post-merchants-merchant-id-payment-method-settings)
-* [Get-Merchants-Merchant Id-Payment Method Settings-Payment Method Id](../../doc/controllers/paymentmethods-merchantlevel.md#get-merchants-merchant-id-payment-method-settings-payment-method-id)
-* [Patch-Merchants-Merchant Id-Payment Method Settings-Payment Method Id](../../doc/controllers/paymentmethods-merchantlevel.md#patch-merchants-merchant-id-payment-method-settings-payment-method-id)
-* [Post-Merchants-Merchant Id-Payment Method Settings-Payment Method Id-Add Apple Pay Domains](../../doc/controllers/paymentmethods-merchantlevel.md#post-merchants-merchant-id-payment-method-settings-payment-method-id-add-apple-pay-domains)
-* [Get-Merchants-Merchant Id-Payment Method Settings-Payment Method Id-Get Apple Pay Domains](../../doc/controllers/paymentmethods-merchantlevel.md#get-merchants-merchant-id-payment-method-settings-payment-method-id-get-apple-pay-domains)
+* [List Payment Method Settings](../../doc/controllers/paymentmethods-merchantlevel.md#list-payment-method-settings)
+* [Create Payment Method Setting](../../doc/controllers/paymentmethods-merchantlevel.md#create-payment-method-setting)
+* [Get Payment Method Setting](../../doc/controllers/paymentmethods-merchantlevel.md#get-payment-method-setting)
+* [Update Payment Method Setting](../../doc/controllers/paymentmethods-merchantlevel.md#update-payment-method-setting)
+* [Add Apple Pay Domains](../../doc/controllers/paymentmethods-merchantlevel.md#add-apple-pay-domains)
+* [Get Apple Pay Domains](../../doc/controllers/paymentmethods-merchantlevel.md#get-apple-pay-domains)
 
 
-# Get-Merchants-Merchant Id-Payment Method Settings
+# List Payment Method Settings
 
 Returns details for all payment methods of the merchant account identified in the path.
 
@@ -27,7 +27,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Payment methods read
 
 ```php
-function getMerchantsMerchantIdPaymentMethodSettings(
+function listPaymentMethodSettings(
     string $merchantId,
     ?string $storeId = null,
     ?string $businessLineId = null,
@@ -56,7 +56,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $paymentMethodsMerchantLevelApi = $client->getPaymentMethodsMerchantLevelApi();
-$apiResponse = $paymentMethodsMerchantLevelApi->getMerchantsMerchantIdPaymentMethodSettings($merchantId);
+$apiResponse = $paymentMethodsMerchantLevelApi->listPaymentMethodSettings($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -84,7 +84,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Payment Method Settings
+# Create Payment Method Setting
 
 Sends a request to add a new payment method to the merchant account identified in the path.
 Depending the payment method [`type`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/_merchantId_/paymentMethodSettings#request-type), you may need to send an additional object required for the payment method.
@@ -94,10 +94,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Payment methods read and write
 
 ```php
-function postMerchantsMerchantIdPaymentMethodSettings(
-    string $merchantId,
-    ?PaymentMethodSetupInfo $body = null
-): ApiResponse
+function createPaymentMethodSetting(string $merchantId, ?PaymentMethodSetupInfo $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -132,7 +129,7 @@ $body = PaymentMethodSetupInfoBuilder::init(
     ->build();
 
 $paymentMethodsMerchantLevelApi = $client->getPaymentMethodsMerchantLevelApi();
-$apiResponse = $paymentMethodsMerchantLevelApi->postMerchantsMerchantIdPaymentMethodSettings(
+$apiResponse = $paymentMethodsMerchantLevelApi->createPaymentMethodSetting(
     $merchantId,
     $body
 );
@@ -178,7 +175,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Payment Method Settings-Payment Method Id
+# Get Payment Method Setting
 
 Returns details for the merchant account and the payment method identified in the path.
 
@@ -187,10 +184,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Payment methods read
 
 ```php
-function getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(
-    string $merchantId,
-    string $paymentMethodId
-): ApiResponse
+function getPaymentMethodSetting(string $merchantId, string $paymentMethodId): ApiResponse
 ```
 
 ## Parameters
@@ -212,7 +206,7 @@ $merchantId = 'merchantId6';
 $paymentMethodId = 'paymentMethodId2';
 
 $paymentMethodsMerchantLevelApi = $client->getPaymentMethodsMerchantLevelApi();
-$apiResponse = $paymentMethodsMerchantLevelApi->getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(
+$apiResponse = $paymentMethodsMerchantLevelApi->getPaymentMethodSetting(
     $merchantId,
     $paymentMethodId
 );
@@ -243,7 +237,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Payment Method Settings-Payment Method Id
+# Update Payment Method Setting
 
 Updates payment method details for the merchant account and the payment method identified in the path.
 Depending the payment method [`type`](https://docs.adyen.com/api-explorer/Management/latest/patch/merchants/_merchantId_/paymentMethodSettings#request-type), you may need to send an additional object required for the payment method.
@@ -253,7 +247,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Payment methods read and write
 
 ```php
-function patchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(
+function updatePaymentMethodSetting(
     string $merchantId,
     string $paymentMethodId,
     ?UpdatePaymentMethodInfo $body = null
@@ -293,7 +287,7 @@ $body = UpdatePaymentMethodInfoBuilder::init()
     ->build();
 
 $paymentMethodsMerchantLevelApi = $client->getPaymentMethodsMerchantLevelApi();
-$apiResponse = $paymentMethodsMerchantLevelApi->patchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(
+$apiResponse = $paymentMethodsMerchantLevelApi->updatePaymentMethodSetting(
     $merchantId,
     $paymentMethodId,
     $body
@@ -348,7 +342,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Payment Method Settings-Payment Method Id-Add Apple Pay Domains
+# Add Apple Pay Domains
 
 Adds the new domain to the list of Apple Pay domains that are registered with the merchant account and the payment method identified in the path. For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in/?tab=adyen-certificate-live_1#going-live).
 
@@ -357,7 +351,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Payment methods read and write
 
 ```php
-function postMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(
+function addApplePayDomains(
     string $merchantId,
     string $paymentMethodId,
     ?ApplePayInfo $body = null
@@ -390,7 +384,7 @@ $body = ApplePayInfoBuilder::init(
 )->build();
 
 $paymentMethodsMerchantLevelApi = $client->getPaymentMethodsMerchantLevelApi();
-$apiResponse = $paymentMethodsMerchantLevelApi->postMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(
+$apiResponse = $paymentMethodsMerchantLevelApi->addApplePayDomains(
     $merchantId,
     $paymentMethodId,
     $body
@@ -422,7 +416,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Payment Method Settings-Payment Method Id-Get Apple Pay Domains
+# Get Apple Pay Domains
 
 Returns all Apple Pay domains that are registered with the merchant account and the payment method identified in the path. For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/enable-apple-pay#register-merchant-domain).
 
@@ -431,10 +425,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Payment methods read
 
 ```php
-function getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(
-    string $merchantId,
-    string $paymentMethodId
-): ApiResponse
+function getApplePayDomains(string $merchantId, string $paymentMethodId): ApiResponse
 ```
 
 ## Parameters
@@ -456,7 +447,7 @@ $merchantId = 'merchantId6';
 $paymentMethodId = 'paymentMethodId2';
 
 $paymentMethodsMerchantLevelApi = $client->getPaymentMethodsMerchantLevelApi();
-$apiResponse = $paymentMethodsMerchantLevelApi->getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(
+$apiResponse = $paymentMethodsMerchantLevelApi->getApplePayDomains(
     $merchantId,
     $paymentMethodId
 );

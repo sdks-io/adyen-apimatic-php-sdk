@@ -9,7 +9,7 @@ $apIkeyCompanylevelApi = $client->getApIkeyCompanylevelApi();
 `ApIkeyCompanylevelApi`
 
 
-# Post-Companies-Company Id-Api Credentials-Api Credential Id-Generate Api Key
+# Generate Company Api Key
 
 Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one.
 
@@ -18,10 +18,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function postCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKey(
-    string $companyId,
-    string $apiCredentialId
-): ApiResponse
+function generateCompanyApiKey(string $companyId, string $apiCredentialId): ApiResponse
 ```
 
 ## Parameters
@@ -43,7 +40,7 @@ $companyId = 'companyId0';
 $apiCredentialId = 'apiCredentialId8';
 
 $apiKeyCompanyLevelApi = $client->getApiKeyCompanyLevelApi();
-$apiResponse = $apiKeyCompanyLevelApi->postCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKey(
+$apiResponse = $apiKeyCompanyLevelApi->generateCompanyApiKey(
     $companyId,
     $apiCredentialId
 );

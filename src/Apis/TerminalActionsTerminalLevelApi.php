@@ -46,7 +46,7 @@ class TerminalActionsTerminalLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postTerminalsScheduleActions(?ScheduleTerminalActionsRequest $body = null): ApiResponse
+    public function scheduleTerminalActions(?ScheduleTerminalActionsRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/terminals/scheduleActions')
             ->server(Server::DEFAULT1)

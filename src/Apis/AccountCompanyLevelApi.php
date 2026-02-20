@@ -38,7 +38,7 @@ class AccountCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompanies(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
+    public function listCompanies(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies')
             ->server(Server::DEFAULT1)
@@ -96,7 +96,7 @@ class AccountCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyId(string $companyId): ApiResponse
+    public function getCompany(string $companyId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}')
             ->server(Server::DEFAULT1)
@@ -158,7 +158,7 @@ class AccountCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdMerchants(
+    public function listCompanyMerchants(
         string $companyId,
         ?int $pageNumber = null,
         ?int $pageSize = null

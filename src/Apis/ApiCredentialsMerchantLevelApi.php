@@ -42,7 +42,7 @@ class ApiCredentialsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdApiCredentials(
+    public function listMerchantApiCredentials(
         string $merchantId,
         ?int $pageNumber = null,
         ?int $pageSize = null
@@ -124,7 +124,7 @@ class ApiCredentialsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdApiCredentials(
+    public function createMerchantApiCredential(
         string $merchantId,
         ?CreateMerchantApiCredentialRequest $body = null
     ): ApiResponse {
@@ -189,10 +189,8 @@ class ApiCredentialsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdApiCredentialsApiCredentialId(
-        string $merchantId,
-        string $apiCredentialId
-    ): ApiResponse {
+    public function getMerchantApiCredential(string $merchantId, string $apiCredentialId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/merchants/{merchantId}/apiCredentials/{apiCredentialId}'
@@ -258,7 +256,7 @@ class ApiCredentialsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdApiCredentialsApiCredentialId(
+    public function updateMerchantApiCredential(
         string $merchantId,
         string $apiCredentialId,
         ?UpdateMerchantApiCredentialRequest $body = null

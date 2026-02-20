@@ -35,10 +35,8 @@ class ClientKeyMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKey(
-        string $merchantId,
-        string $apiCredentialId
-    ): ApiResponse {
+    public function generateMerchantClientKey(string $merchantId, string $apiCredentialId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::POST,
             '/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey'

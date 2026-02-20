@@ -43,7 +43,7 @@ class UsersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdUsers(
+    public function listMerchantUsers(
         string $merchantId,
         ?int $pageNumber = null,
         ?int $pageSize = null,
@@ -111,10 +111,8 @@ class UsersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdUsers(
-        string $merchantId,
-        ?CreateMerchantUserRequest $body = null
-    ): ApiResponse {
+    public function createMerchantUser(string $merchantId, ?CreateMerchantUserRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/users')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -176,7 +174,7 @@ class UsersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdUsersUserId(string $merchantId, string $userId): ApiResponse
+    public function getMerchantUser(string $merchantId, string $userId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/users/{userId}')
             ->server(Server::DEFAULT1)
@@ -239,7 +237,7 @@ class UsersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdUsersUserId(
+    public function updateMerchantUser(
         string $merchantId,
         string $userId,
         ?UpdateMerchantUserRequest $body = null

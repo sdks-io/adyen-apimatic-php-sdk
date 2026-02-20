@@ -56,7 +56,7 @@ class TerminalsTerminalLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getTerminals(
+    public function listTerminals(
         ?string $searchQuery = null,
         ?string $otpQuery = null,
         ?string $countries = null,
@@ -135,10 +135,8 @@ class TerminalsTerminalLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postTerminalsTerminalIdReassign(
-        string $terminalId,
-        ?TerminalReassignmentRequest $body = null
-    ): ApiResponse {
+    public function reassignTerminal(string $terminalId, ?TerminalReassignmentRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/terminals/{terminalId}/reassign')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')

@@ -10,13 +10,13 @@ $allowedoriginsMerchantlevelApi = $client->getAllowedoriginsMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins](../../doc/controllers/allowedorigins-merchantlevel.md#get-merchants-merchant-id-api-credentials-api-credential-id-allowed-origins)
-* [Post-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins](../../doc/controllers/allowedorigins-merchantlevel.md#post-merchants-merchant-id-api-credentials-api-credential-id-allowed-origins)
-* [Delete-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id](../../doc/controllers/allowedorigins-merchantlevel.md#delete-merchants-merchant-id-api-credentials-api-credential-id-allowed-origins-origin-id)
-* [Get-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id](../../doc/controllers/allowedorigins-merchantlevel.md#get-merchants-merchant-id-api-credentials-api-credential-id-allowed-origins-origin-id)
+* [List Merchant Api Credential Origins](../../doc/controllers/allowedorigins-merchantlevel.md#list-merchant-api-credential-origins)
+* [Create Merchant Api Credential Origin](../../doc/controllers/allowedorigins-merchantlevel.md#create-merchant-api-credential-origin)
+* [Delete Merchant Api Credential Origin](../../doc/controllers/allowedorigins-merchantlevel.md#delete-merchant-api-credential-origin)
+* [Get Merchant Api Credential Origin](../../doc/controllers/allowedorigins-merchantlevel.md#get-merchant-api-credential-origin)
 
 
-# Get-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins
+# List Merchant Api Credential Origins
 
 Returns the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the API credential identified in the path.
 
@@ -25,10 +25,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(
-    string $merchantId,
-    string $apiCredentialId
-): ApiResponse
+function listMerchantApiCredentialOrigins(string $merchantId, string $apiCredentialId): ApiResponse
 ```
 
 ## Parameters
@@ -50,7 +47,7 @@ $merchantId = 'merchantId6';
 $apiCredentialId = 'apiCredentialId8';
 
 $allowedOriginsMerchantLevelApi = $client->getAllowedOriginsMerchantLevelApi();
-$apiResponse = $allowedOriginsMerchantLevelApi->getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(
+$apiResponse = $allowedOriginsMerchantLevelApi->listMerchantApiCredentialOrigins(
     $merchantId,
     $apiCredentialId
 );
@@ -107,7 +104,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins
+# Create Merchant Api Credential Origin
 
 Adds a new [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) to the API credential's list of allowed origins.
 
@@ -116,7 +113,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function postMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(
+function createMerchantApiCredentialOrigin(
     string $merchantId,
     string $apiCredentialId,
     ?AllowedOrigin $body = null
@@ -147,7 +144,7 @@ $body = AllowedOriginBuilder::init(
 )->build();
 
 $allowedOriginsMerchantLevelApi = $client->getAllowedOriginsMerchantLevelApi();
-$apiResponse = $allowedOriginsMerchantLevelApi->postMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(
+$apiResponse = $allowedOriginsMerchantLevelApi->createMerchantApiCredentialOrigin(
     $merchantId,
     $apiCredentialId,
     $body
@@ -191,7 +188,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id
+# Delete Merchant Api Credential Origin
 
 Removes the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) identified in the path. As soon as an allowed origin is removed, we no longer accept client-side requests from that domain.
 
@@ -200,7 +197,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function deleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+function deleteMerchantApiCredentialOrigin(
     string $merchantId,
     string $apiCredentialId,
     string $originId
@@ -229,7 +226,7 @@ $apiCredentialId = 'apiCredentialId8';
 $originId = 'originId6';
 
 $allowedOriginsMerchantLevelApi = $client->getAllowedOriginsMerchantLevelApi();
-$apiResponse = $allowedOriginsMerchantLevelApi->deleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+$apiResponse = $allowedOriginsMerchantLevelApi->deleteMerchantApiCredentialOrigin(
     $merchantId,
     $apiCredentialId,
     $originId
@@ -260,7 +257,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id
+# Get Merchant Api Credential Origin
 
 Returns the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) identified in the path.
 
@@ -269,7 +266,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+function getMerchantApiCredentialOrigin(
     string $merchantId,
     string $apiCredentialId,
     string $originId
@@ -298,7 +295,7 @@ $apiCredentialId = 'apiCredentialId8';
 $originId = 'originId6';
 
 $allowedOriginsMerchantLevelApi = $client->getAllowedOriginsMerchantLevelApi();
-$apiResponse = $allowedOriginsMerchantLevelApi->getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+$apiResponse = $allowedOriginsMerchantLevelApi->getMerchantApiCredentialOrigin(
     $merchantId,
     $apiCredentialId,
     $originId

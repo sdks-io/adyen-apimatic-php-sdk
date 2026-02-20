@@ -48,7 +48,7 @@ class TerminalSettingsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalLogos(string $companyId, string $model): ApiResponse
+    public function getCompanyTerminalLogo(string $companyId, string $model): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/terminalLogos')
             ->server(Server::DEFAULT1)
@@ -120,11 +120,8 @@ class TerminalSettingsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchCompaniesCompanyIdTerminalLogos(
-        string $companyId,
-        string $model,
-        ?Logo $body = null
-    ): ApiResponse {
+    public function updateCompanyTerminalLogo(string $companyId, string $model, ?Logo $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/companies/{companyId}/terminalLogos')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -196,7 +193,7 @@ class TerminalSettingsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalSettings(string $companyId): ApiResponse
+    public function getCompanyTerminalSettings(string $companyId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/terminalSettings')
             ->server(Server::DEFAULT1)
@@ -270,10 +267,8 @@ class TerminalSettingsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchCompaniesCompanyIdTerminalSettings(
-        string $companyId,
-        ?TerminalSettings $body = null
-    ): ApiResponse {
+    public function updateCompanyTerminalSettings(string $companyId, ?TerminalSettings $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/companies/{companyId}/terminalSettings')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')

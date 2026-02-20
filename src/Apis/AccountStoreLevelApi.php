@@ -47,7 +47,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdStores(
+    public function listMerchantStores(
         string $merchantId,
         ?int $pageNumber = null,
         ?int $pageSize = null,
@@ -117,7 +117,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdStores(string $merchantId, ?StoreCreationRequest $body = null): ApiResponse
+    public function createMerchantStore(string $merchantId, ?StoreCreationRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/stores')
             ->server(Server::DEFAULT1)
@@ -183,7 +183,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdStoresStoreId(string $merchantId, string $storeId): ApiResponse
+    public function getMerchantStore(string $merchantId, string $storeId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/stores/{storeId}')
             ->server(Server::DEFAULT1)
@@ -248,7 +248,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdStoresStoreId(
+    public function updateMerchantStore(
         string $merchantId,
         string $storeId,
         ?UpdateStoreRequest $body = null
@@ -321,7 +321,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getStores(
+    public function listStores(
         ?int $pageNumber = null,
         ?int $pageSize = null,
         ?string $reference = null,
@@ -390,7 +390,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postStores(?StoreCreationWithMerchantCodeRequest $body = null): ApiResponse
+    public function createStore(?StoreCreationWithMerchantCodeRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/stores')
             ->server(Server::DEFAULT1)
@@ -451,7 +451,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getStoresStoreId(string $storeId): ApiResponse
+    public function getStore(string $storeId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/stores/{storeId}')
             ->server(Server::DEFAULT1)
@@ -513,7 +513,7 @@ class AccountStoreLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchStoresStoreId(string $storeId, ?UpdateStoreRequest $body = null): ApiResponse
+    public function updateStore(string $storeId, ?UpdateStoreRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/stores/{storeId}')
             ->server(Server::DEFAULT1)

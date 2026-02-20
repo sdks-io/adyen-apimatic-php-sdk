@@ -35,7 +35,7 @@ class OrdersApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postOrders(?string $idempotencyKey = null, ?CreateOrderRequest $body = null): ApiResponse
+    public function createOrder(?string $idempotencyKey = null, ?CreateOrderRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/orders')
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -91,7 +91,7 @@ class OrdersApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postOrdersCancel(?string $idempotencyKey = null, ?CancelOrderRequest $body = null): ApiResponse
+    public function cancelOrder(?string $idempotencyKey = null, ?CancelOrderRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/orders/cancel')
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -148,7 +148,7 @@ class OrdersApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentMethodsBalance(
+    public function getPaymentMethodBalance(
         ?string $idempotencyKey = null,
         ?BalanceCheckRequest $body = null
     ): ApiResponse {

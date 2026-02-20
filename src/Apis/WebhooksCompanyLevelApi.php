@@ -45,11 +45,8 @@ class WebhooksCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdWebhooks(
-        string $companyId,
-        ?int $pageNumber = null,
-        ?int $pageSize = null
-    ): ApiResponse {
+    public function listCompanyWebhooks(string $companyId, ?int $pageNumber = null, ?int $pageSize = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/webhooks')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -112,10 +109,8 @@ class WebhooksCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdWebhooks(
-        string $companyId,
-        ?CreateCompanyWebhookRequest $body = null
-    ): ApiResponse {
+    public function createCompanyWebhook(string $companyId, ?CreateCompanyWebhookRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/companies/{companyId}/webhooks')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -176,7 +171,7 @@ class WebhooksCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteCompaniesCompanyIdWebhooksWebhookId(string $companyId, string $webhookId): ApiResponse
+    public function deleteCompanyWebhook(string $companyId, string $webhookId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::DELETE, '/companies/{companyId}/webhooks/{webhookId}')
             ->server(Server::DEFAULT1)
@@ -238,7 +233,7 @@ class WebhooksCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdWebhooksWebhookId(string $companyId, string $webhookId): ApiResponse
+    public function getCompanyWebhook(string $companyId, string $webhookId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/webhooks/{webhookId}')
             ->server(Server::DEFAULT1)
@@ -302,7 +297,7 @@ class WebhooksCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchCompaniesCompanyIdWebhooksWebhookId(
+    public function updateCompanyWebhook(
         string $companyId,
         string $webhookId,
         ?UpdateCompanyWebhookRequest $body = null
@@ -373,10 +368,8 @@ class WebhooksCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdWebhooksWebhookIdGenerateHmac(
-        string $companyId,
-        string $webhookId
-    ): ApiResponse {
+    public function generateCompanyWebhookHmac(string $companyId, string $webhookId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::POST,
             '/companies/{companyId}/webhooks/{webhookId}/generateHmac'
@@ -451,7 +444,7 @@ class WebhooksCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdWebhooksWebhookIdTest(
+    public function testCompanyWebhook(
         string $companyId,
         string $webhookId,
         ?TestCompanyWebhookRequest $body = null

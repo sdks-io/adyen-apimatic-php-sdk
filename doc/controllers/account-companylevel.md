@@ -10,12 +10,12 @@ $accountCompanylevelApi = $client->getAccountCompanylevelApi();
 
 ## Methods
 
-* [Get-Companies](../../doc/controllers/account-companylevel.md#get-companies)
-* [Get-Companies-Company Id](../../doc/controllers/account-companylevel.md#get-companies-company-id)
-* [Get-Companies-Company Id-Merchants](../../doc/controllers/account-companylevel.md#get-companies-company-id-merchants)
+* [List Companies](../../doc/controllers/account-companylevel.md#list-companies)
+* [Get Company](../../doc/controllers/account-companylevel.md#get-company)
+* [List Company Merchants](../../doc/controllers/account-companylevel.md#list-company-merchants)
 
 
-# Get-Companies
+# List Companies
 
 Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.
 
@@ -24,7 +24,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Account read
 
 ```php
-function getCompanies(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
+function listCompanies(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
 ```
 
 ## Parameters
@@ -42,7 +42,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 
 ```php
 $accountCompanyLevelApi = $client->getAccountCompanyLevelApi();
-$apiResponse = $accountCompanyLevelApi->getCompanies();
+$apiResponse = $accountCompanyLevelApi->listCompanies();
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -116,7 +116,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Companies-Company Id
+# Get Company
 
 Returns the company account specified in the path. Your API credential must have access to the company account.
 
@@ -125,7 +125,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Account read
 
 ```php
-function getCompaniesCompanyId(string $companyId): ApiResponse
+function getCompany(string $companyId): ApiResponse
 ```
 
 ## Parameters
@@ -144,7 +144,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $companyId = 'companyId0';
 
 $accountCompanyLevelApi = $client->getAccountCompanyLevelApi();
-$apiResponse = $accountCompanyLevelApi->getCompaniesCompanyId($companyId);
+$apiResponse = $accountCompanyLevelApi->getCompany($companyId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -201,7 +201,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Companies-Company Id-Merchants
+# List Company Merchants
 
 Returns the list of merchant accounts under the company account specified in the path. The list only includes merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.
 
@@ -210,11 +210,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Account read
 
 ```php
-function getCompaniesCompanyIdMerchants(
-    string $companyId,
-    ?int $pageNumber = null,
-    ?int $pageSize = null
-): ApiResponse
+function listCompanyMerchants(string $companyId, ?int $pageNumber = null, ?int $pageSize = null): ApiResponse
 ```
 
 ## Parameters
@@ -235,7 +231,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $companyId = 'companyId0';
 
 $accountCompanyLevelApi = $client->getAccountCompanyLevelApi();
-$apiResponse = $accountCompanyLevelApi->getCompaniesCompanyIdMerchants($companyId);
+$apiResponse = $accountCompanyLevelApi->listCompanyMerchants($companyId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());

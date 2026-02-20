@@ -10,13 +10,13 @@ $apIcredentialsMerchantlevelApi = $client->getApIcredentialsMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Api Credentials](../../doc/controllers/ap-icredentials-merchantlevel.md#get-merchants-merchant-id-api-credentials)
-* [Post-Merchants-Merchant Id-Api Credentials](../../doc/controllers/ap-icredentials-merchantlevel.md#post-merchants-merchant-id-api-credentials)
-* [Get-Merchants-Merchant Id-Api Credentials-Api Credential Id](../../doc/controllers/ap-icredentials-merchantlevel.md#get-merchants-merchant-id-api-credentials-api-credential-id)
-* [Patch-Merchants-Merchant Id-Api Credentials-Api Credential Id](../../doc/controllers/ap-icredentials-merchantlevel.md#patch-merchants-merchant-id-api-credentials-api-credential-id)
+* [List Merchant Api Credentials](../../doc/controllers/ap-icredentials-merchantlevel.md#list-merchant-api-credentials)
+* [Create Merchant Api Credential](../../doc/controllers/ap-icredentials-merchantlevel.md#create-merchant-api-credential)
+* [Get Merchant Api Credential](../../doc/controllers/ap-icredentials-merchantlevel.md#get-merchant-api-credential)
+* [Update Merchant Api Credential](../../doc/controllers/ap-icredentials-merchantlevel.md#update-merchant-api-credential)
 
 
-# Get-Merchants-Merchant Id-Api Credentials
+# List Merchant Api Credentials
 
 Returns the list of [API credentials](https://docs.adyen.com/development-resources/api-credentials) for the merchant account. The list is grouped into pages as defined by the query parameters.
 
@@ -25,7 +25,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function getMerchantsMerchantIdApiCredentials(
+function listMerchantApiCredentials(
     string $merchantId,
     ?int $pageNumber = null,
     ?int $pageSize = null
@@ -50,7 +50,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $apiCredentialsMerchantLevelApi = $client->getApiCredentialsMerchantLevelApi();
-$apiResponse = $apiCredentialsMerchantLevelApi->getMerchantsMerchantIdApiCredentials($merchantId);
+$apiResponse = $apiCredentialsMerchantLevelApi->listMerchantApiCredentials($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -449,7 +449,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Api Credentials
+# Create Merchant Api Credential
 
 Creates an [API credential](https://docs.adyen.com/development-resources/api-credentials) for the company account identified in the path. In the request, you can specify the roles and allowed origins for the new API credential.
 
@@ -468,7 +468,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function postMerchantsMerchantIdApiCredentials(
+function createMerchantApiCredential(
     string $merchantId,
     ?CreateMerchantApiCredentialRequest $body = null
 ): ApiResponse
@@ -504,7 +504,7 @@ $body = CreateMerchantApiCredentialRequestBuilder::init()
     ->build();
 
 $apiCredentialsMerchantLevelApi = $client->getApiCredentialsMerchantLevelApi();
-$apiResponse = $apiCredentialsMerchantLevelApi->postMerchantsMerchantIdApiCredentials(
+$apiResponse = $apiCredentialsMerchantLevelApi->createMerchantApiCredential(
     $merchantId,
     $body
 );
@@ -579,7 +579,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Api Credentials-Api Credential Id
+# Get Merchant Api Credential
 
 Returns the [API credential](https://docs.adyen.com/development-resources/api-credentials) identified in the path.
 
@@ -588,10 +588,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function getMerchantsMerchantIdApiCredentialsApiCredentialId(
-    string $merchantId,
-    string $apiCredentialId
-): ApiResponse
+function getMerchantApiCredential(string $merchantId, string $apiCredentialId): ApiResponse
 ```
 
 ## Parameters
@@ -613,7 +610,7 @@ $merchantId = 'merchantId6';
 $apiCredentialId = 'apiCredentialId8';
 
 $apiCredentialsMerchantLevelApi = $client->getApiCredentialsMerchantLevelApi();
-$apiResponse = $apiCredentialsMerchantLevelApi->getMerchantsMerchantIdApiCredentialsApiCredentialId(
+$apiResponse = $apiCredentialsMerchantLevelApi->getMerchantApiCredential(
     $merchantId,
     $apiCredentialId
 );
@@ -675,7 +672,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Api Credentials-Api Credential Id
+# Update Merchant Api Credential
 
 Changes the API credential's roles, or allowed origins. The request has the new values for the fields you want to change. The response contains the full updated API credential, including the new values from the request.
 
@@ -684,7 +681,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function patchMerchantsMerchantIdApiCredentialsApiCredentialId(
+function updateMerchantApiCredential(
     string $merchantId,
     string $apiCredentialId,
     ?UpdateMerchantApiCredentialRequest $body = null
@@ -715,7 +712,7 @@ $body = UpdateMerchantApiCredentialRequestBuilder::init()
     ->build();
 
 $apiCredentialsMerchantLevelApi = $client->getApiCredentialsMerchantLevelApi();
-$apiResponse = $apiCredentialsMerchantLevelApi->patchMerchantsMerchantIdApiCredentialsApiCredentialId(
+$apiResponse = $apiCredentialsMerchantLevelApi->updateMerchantApiCredential(
     $merchantId,
     $apiCredentialId,
     $body

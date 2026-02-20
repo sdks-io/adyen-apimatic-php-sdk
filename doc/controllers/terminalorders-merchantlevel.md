@@ -10,19 +10,19 @@ $terminalordersMerchantlevelApi = $client->getTerminalordersMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Billing Entities](../../doc/controllers/terminalorders-merchantlevel.md#get-merchants-merchant-id-billing-entities)
-* [Get-Merchants-Merchant Id-Shipping Locations](../../doc/controllers/terminalorders-merchantlevel.md#get-merchants-merchant-id-shipping-locations)
-* [Post-Merchants-Merchant Id-Shipping Locations](../../doc/controllers/terminalorders-merchantlevel.md#post-merchants-merchant-id-shipping-locations)
-* [Get-Merchants-Merchant Id-Terminal Models](../../doc/controllers/terminalorders-merchantlevel.md#get-merchants-merchant-id-terminal-models)
-* [Get-Merchants-Merchant Id-Terminal Orders](../../doc/controllers/terminalorders-merchantlevel.md#get-merchants-merchant-id-terminal-orders)
-* [Post-Merchants-Merchant Id-Terminal Orders](../../doc/controllers/terminalorders-merchantlevel.md#post-merchants-merchant-id-terminal-orders)
-* [Get-Merchants-Merchant Id-Terminal Orders-Order Id](../../doc/controllers/terminalorders-merchantlevel.md#get-merchants-merchant-id-terminal-orders-order-id)
-* [Patch-Merchants-Merchant Id-Terminal Orders-Order Id](../../doc/controllers/terminalorders-merchantlevel.md#patch-merchants-merchant-id-terminal-orders-order-id)
-* [Post-Merchants-Merchant Id-Terminal Orders-Order Id-Cancel](../../doc/controllers/terminalorders-merchantlevel.md#post-merchants-merchant-id-terminal-orders-order-id-cancel)
-* [Get-Merchants-Merchant Id-Terminal Products](../../doc/controllers/terminalorders-merchantlevel.md#get-merchants-merchant-id-terminal-products)
+* [List Merchant Billing Entities](../../doc/controllers/terminalorders-merchantlevel.md#list-merchant-billing-entities)
+* [List Merchant Shipping Locations](../../doc/controllers/terminalorders-merchantlevel.md#list-merchant-shipping-locations)
+* [Create Merchant Shipping Location](../../doc/controllers/terminalorders-merchantlevel.md#create-merchant-shipping-location)
+* [List Merchant Terminal Models](../../doc/controllers/terminalorders-merchantlevel.md#list-merchant-terminal-models)
+* [List Merchant Terminal Orders](../../doc/controllers/terminalorders-merchantlevel.md#list-merchant-terminal-orders)
+* [Create Merchant Terminal Order](../../doc/controllers/terminalorders-merchantlevel.md#create-merchant-terminal-order)
+* [Get Merchant Terminal Order](../../doc/controllers/terminalorders-merchantlevel.md#get-merchant-terminal-order)
+* [Update Merchant Terminal Order](../../doc/controllers/terminalorders-merchantlevel.md#update-merchant-terminal-order)
+* [Cancel Merchant Terminal Order](../../doc/controllers/terminalorders-merchantlevel.md#cancel-merchant-terminal-order)
+* [List Merchant Terminal Products](../../doc/controllers/terminalorders-merchantlevel.md#list-merchant-terminal-products)
 
 
-# Get-Merchants-Merchant Id-Billing Entities
+# List Merchant Billing Entities
 
 Returns the billing entities of the merchant account identified in the path.
 A billing entity is a legal entity where we charge orders to. An order for terminal products must contain the ID of a billing entity.
@@ -35,7 +35,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdBillingEntities(string $merchantId, ?string $name = null): ApiResponse
+function listMerchantBillingEntities(string $merchantId, ?string $name = null): ApiResponse
 ```
 
 ## Parameters
@@ -55,7 +55,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->getMerchantsMerchantIdBillingEntities($merchantId);
+$apiResponse = $terminalOrdersMerchantLevelApi->listMerchantBillingEntities($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -103,7 +103,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Shipping Locations
+# List Merchant Shipping Locations
 
 Returns the shipping locations for the merchant account identified in the path.
 A shipping location includes the address where orders can be delivered, and an ID which you need to specify when ordering terminal products.
@@ -116,7 +116,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdShippingLocations(
+function listMerchantShippingLocations(
     string $merchantId,
     ?string $name = null,
     ?int $offset = null,
@@ -143,7 +143,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->getMerchantsMerchantIdShippingLocations($merchantId);
+$apiResponse = $terminalOrdersMerchantLevelApi->listMerchantShippingLocations($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -196,7 +196,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Shipping Locations
+# Create Merchant Shipping Location
 
 Creates a shipping location for the merchant account identified in the path. A shipping location defines an address where orders can be shipped to.
 
@@ -207,10 +207,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function postMerchantsMerchantIdShippingLocations(
-    string $merchantId,
-    ?ShippingLocation $body = null
-): ApiResponse
+function createMerchantShippingLocation(string $merchantId, ?ShippingLocation $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -252,7 +249,7 @@ $body = ShippingLocationBuilder::init()
     ->build();
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->postMerchantsMerchantIdShippingLocations(
+$apiResponse = $terminalOrdersMerchantLevelApi->createMerchantShippingLocation(
     $merchantId,
     $body
 );
@@ -304,7 +301,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Terminal Models
+# List Merchant Terminal Models
 
 Returns the payment terminal models that the merchant account identified in the path has access to. The response includes the terminal model ID, which can be used as a query parameter when getting a list of terminals or a list of products for ordering.
 
@@ -316,7 +313,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdTerminalModels(string $merchantId): ApiResponse
+function listMerchantTerminalModels(string $merchantId): ApiResponse
 ```
 
 ## Parameters
@@ -335,7 +332,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->getMerchantsMerchantIdTerminalModels($merchantId);
+$apiResponse = $terminalOrdersMerchantLevelApi->listMerchantTerminalModels($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -523,7 +520,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Terminal Orders
+# List Merchant Terminal Orders
 
 Returns a list of terminal products orders for the merchant account identified in the path.
 
@@ -535,7 +532,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdTerminalOrders(
+function listMerchantTerminalOrders(
     string $merchantId,
     ?string $customerOrderReference = null,
     ?string $status = null,
@@ -564,7 +561,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->getMerchantsMerchantIdTerminalOrders($merchantId);
+$apiResponse = $terminalOrdersMerchantLevelApi->listMerchantTerminalOrders($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -689,7 +686,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Terminal Orders
+# Create Merchant Terminal Order
 
 Creates an order for payment terminal products for the merchant account identified in the path.
 
@@ -702,10 +699,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function postMerchantsMerchantIdTerminalOrders(
-    string $merchantId,
-    ?TerminalOrderRequest $body = null
-): ApiResponse
+function createMerchantTerminalOrder(string $merchantId, ?TerminalOrderRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -745,7 +739,7 @@ $body = TerminalOrderRequestBuilder::init()
     ->build();
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->postMerchantsMerchantIdTerminalOrders(
+$apiResponse = $terminalOrdersMerchantLevelApi->createMerchantTerminalOrder(
     $merchantId,
     $body
 );
@@ -827,7 +821,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Terminal Orders-Order Id
+# Get Merchant Terminal Order
 
 Returns the details of the terminal products order identified in the path.
 
@@ -839,7 +833,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdTerminalOrdersOrderId(string $merchantId, string $orderId): ApiResponse
+function getMerchantTerminalOrder(string $merchantId, string $orderId): ApiResponse
 ```
 
 ## Parameters
@@ -861,7 +855,7 @@ $merchantId = 'merchantId6';
 $orderId = 'orderId2';
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->getMerchantsMerchantIdTerminalOrdersOrderId(
+$apiResponse = $terminalOrdersMerchantLevelApi->getMerchantTerminalOrder(
     $merchantId,
     $orderId
 );
@@ -943,7 +937,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Terminal Orders-Order Id
+# Update Merchant Terminal Order
 
 Updates the terminal products order identified in the path.
 Updating is only possible while the order has the status **Placed**.
@@ -959,7 +953,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchMerchantsMerchantIdTerminalOrdersOrderId(
+function updateMerchantTerminalOrder(
     string $merchantId,
     string $orderId,
     ?TerminalOrderRequest $body = null
@@ -1008,7 +1002,7 @@ $body = TerminalOrderRequestBuilder::init()
     ->build();
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->patchMerchantsMerchantIdTerminalOrdersOrderId(
+$apiResponse = $terminalOrdersMerchantLevelApi->updateMerchantTerminalOrder(
     $merchantId,
     $orderId,
     $body
@@ -1097,7 +1091,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Terminal Orders-Order Id-Cancel
+# Cancel Merchant Terminal Order
 
 Cancels the terminal products order identified in the path.
 Cancelling is only possible while the order has the status **Placed**.
@@ -1110,7 +1104,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function postMerchantsMerchantIdTerminalOrdersOrderIdCancel(string $merchantId, string $orderId): ApiResponse
+function cancelMerchantTerminalOrder(string $merchantId, string $orderId): ApiResponse
 ```
 
 ## Parameters
@@ -1132,7 +1126,7 @@ $merchantId = 'merchantId6';
 $orderId = 'orderId2';
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->postMerchantsMerchantIdTerminalOrdersOrderIdCancel(
+$apiResponse = $terminalOrdersMerchantLevelApi->cancelMerchantTerminalOrder(
     $merchantId,
     $orderId
 );
@@ -1214,7 +1208,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Terminal Products
+# List Merchant Terminal Products
 
 Returns a country-specific list of payment terminal packages and parts that the merchant account identified in the path has access to.
 
@@ -1226,7 +1220,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdTerminalProducts(
+function listMerchantTerminalProducts(
     string $merchantId,
     string $country,
     ?string $terminalModelId = null,
@@ -1257,7 +1251,7 @@ $merchantId = 'merchantId6';
 $country = 'country4';
 
 $terminalOrdersMerchantLevelApi = $client->getTerminalOrdersMerchantLevelApi();
-$apiResponse = $terminalOrdersMerchantLevelApi->getMerchantsMerchantIdTerminalProducts(
+$apiResponse = $terminalOrdersMerchantLevelApi->listMerchantTerminalProducts(
     $merchantId,
     $country
 );

@@ -10,18 +10,18 @@ $splitconfigurationMerchantlevelApi = $client->getSplitconfigurationMerchantleve
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Split Configurations](../../doc/controllers/splitconfiguration-merchantlevel.md#get-merchants-merchant-id-split-configurations)
-* [Post-Merchants-Merchant Id-Split Configurations](../../doc/controllers/splitconfiguration-merchantlevel.md#post-merchants-merchant-id-split-configurations)
-* [Delete-Merchants-Merchant Id-Split Configurations-Split Configuration Id](../../doc/controllers/splitconfiguration-merchantlevel.md#delete-merchants-merchant-id-split-configurations-split-configuration-id)
-* [Get-Merchants-Merchant Id-Split Configurations-Split Configuration Id](../../doc/controllers/splitconfiguration-merchantlevel.md#get-merchants-merchant-id-split-configurations-split-configuration-id)
-* [Patch-Merchants-Merchant Id-Split Configurations-Split Configuration Id](../../doc/controllers/splitconfiguration-merchantlevel.md#patch-merchants-merchant-id-split-configurations-split-configuration-id)
-* [Post-Merchants-Merchant Id-Split Configurations-Split Configuration Id](../../doc/controllers/splitconfiguration-merchantlevel.md#post-merchants-merchant-id-split-configurations-split-configuration-id)
-* [Delete-Merchants-Merchant Id-Split Configurations-Split Configuration Id-Rules-Rule Id](../../doc/controllers/splitconfiguration-merchantlevel.md#delete-merchants-merchant-id-split-configurations-split-configuration-id-rules-rule-id)
-* [Patch-Merchants-Merchant Id-Split Configurations-Split Configuration Id-Rules-Rule Id](../../doc/controllers/splitconfiguration-merchantlevel.md#patch-merchants-merchant-id-split-configurations-split-configuration-id-rules-rule-id)
-* [Patch-Merchants-Merchant Id-Split Configurations-Split Configuration Id-Rules-Rule Id-Split Logic-Split Logic Id](../../doc/controllers/splitconfiguration-merchantlevel.md#patch-merchants-merchant-id-split-configurations-split-configuration-id-rules-rule-id-split-logic-split-logic-id)
+* [List Split Configurations](../../doc/controllers/splitconfiguration-merchantlevel.md#list-split-configurations)
+* [Create Split Configuration](../../doc/controllers/splitconfiguration-merchantlevel.md#create-split-configuration)
+* [Delete Split Configuration](../../doc/controllers/splitconfiguration-merchantlevel.md#delete-split-configuration)
+* [Get Split Configuration](../../doc/controllers/splitconfiguration-merchantlevel.md#get-split-configuration)
+* [Update Split Configuration](../../doc/controllers/splitconfiguration-merchantlevel.md#update-split-configuration)
+* [Create Split Configuration Rule](../../doc/controllers/splitconfiguration-merchantlevel.md#create-split-configuration-rule)
+* [Delete Split Configuration Rule](../../doc/controllers/splitconfiguration-merchantlevel.md#delete-split-configuration-rule)
+* [Update Split Configuration Rule](../../doc/controllers/splitconfiguration-merchantlevel.md#update-split-configuration-rule)
+* [Update Split Logic](../../doc/controllers/splitconfiguration-merchantlevel.md#update-split-logic)
 
 
-# Get-Merchants-Merchant Id-Split Configurations
+# List Split Configurations
 
 Returns the list of split configuration profiles for the merchant account.
 
@@ -30,7 +30,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function getMerchantsMerchantIdSplitConfigurations(string $merchantId): ApiResponse
+function listSplitConfigurations(string $merchantId): ApiResponse
 ```
 
 ## Parameters
@@ -49,7 +49,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->getMerchantsMerchantIdSplitConfigurations($merchantId);
+$apiResponse = $splitConfigurationMerchantLevelApi->listSplitConfigurations($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -166,7 +166,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Split Configurations
+# Create Split Configuration
 
 Creates a split configuration profile to [split payments automatically](https://docs.adyen.com/platforms/automatic-split-configuration/). After you [associate it with a store](https://docs.adyen.com/api-explorer/Management/latest/patch/merchants/(merchantId)/stores/(storeId)#request-splitConfiguration) in your merchant account, it splits the funds of all transactions processed through that store between your liable balance account and [your user's balance account](https://docs.adyen.com/api-explorer/Management/latest/patch/merchants/(merchantId)/stores/(storeId)#request-splitConfiguration-balanceAccountId).
 
@@ -175,10 +175,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function postMerchantsMerchantIdSplitConfigurations(
-    string $merchantId,
-    ?SplitConfiguration $body = null
-): ApiResponse
+function createSplitConfiguration(string $merchantId, ?SplitConfiguration $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -228,7 +225,7 @@ $body = SplitConfigurationBuilder::init(
 )->build();
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->postMerchantsMerchantIdSplitConfigurations(
+$apiResponse = $splitConfigurationMerchantLevelApi->createSplitConfiguration(
     $merchantId,
     $body
 );
@@ -292,7 +289,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Merchants-Merchant Id-Split Configurations-Split Configuration Id
+# Delete Split Configuration
 
 Deletes the split configuration profile specified in the path.
 
@@ -301,10 +298,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function deleteMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
-    string $merchantId,
-    string $splitConfigurationId
-): ApiResponse
+function deleteSplitConfiguration(string $merchantId, string $splitConfigurationId): ApiResponse
 ```
 
 ## Parameters
@@ -326,7 +320,7 @@ $merchantId = 'merchantId6';
 $splitConfigurationId = 'splitConfigurationId4';
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->deleteMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+$apiResponse = $splitConfigurationMerchantLevelApi->deleteSplitConfiguration(
     $merchantId,
     $splitConfigurationId
 );
@@ -356,7 +350,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Split Configurations-Split Configuration Id
+# Get Split Configuration
 
 Returns the details of the split configuration profile specified in the path.
 
@@ -365,10 +359,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function getMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
-    string $merchantId,
-    string $splitConfigurationId
-): ApiResponse
+function getSplitConfiguration(string $merchantId, string $splitConfigurationId): ApiResponse
 ```
 
 ## Parameters
@@ -390,7 +381,7 @@ $merchantId = 'merchantId6';
 $splitConfigurationId = 'splitConfigurationId4';
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->getMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+$apiResponse = $splitConfigurationMerchantLevelApi->getSplitConfiguration(
     $merchantId,
     $splitConfigurationId
 );
@@ -477,7 +468,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Split Configurations-Split Configuration Id
+# Update Split Configuration
 
 Changes the description of the split configuration profile specified in the path.
 
@@ -486,7 +477,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+function updateSplitConfiguration(
     string $merchantId,
     string $splitConfigurationId,
     ?UpdateSplitConfigurationRequest $body = null
@@ -517,7 +508,7 @@ $body = UpdateSplitConfigurationRequestBuilder::init(
 )->build();
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+$apiResponse = $splitConfigurationMerchantLevelApi->updateSplitConfiguration(
     $merchantId,
     $splitConfigurationId,
     $body
@@ -605,7 +596,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Split Configurations-Split Configuration Id
+# Create Split Configuration Rule
 
 [Creates a rule](https://docs.adyen.com/platforms/automatic-split-configuration/manage-split-configurations/api/#create-rule) in the split configuration profile specified in the path.
 
@@ -614,7 +605,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function postMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+function createSplitConfigurationRule(
     string $merchantId,
     string $splitConfigurationId,
     ?SplitConfigurationRule $body = null
@@ -666,7 +657,7 @@ $body = SplitConfigurationRuleBuilder::init(
 )->build();
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->postMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+$apiResponse = $splitConfigurationMerchantLevelApi->createSplitConfigurationRule(
     $merchantId,
     $splitConfigurationId,
     $body
@@ -754,7 +745,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Merchants-Merchant Id-Split Configurations-Split Configuration Id-Rules-Rule Id
+# Delete Split Configuration Rule
 
 Deletes the rule specified in the path.
 
@@ -763,7 +754,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function deleteMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleId(
+function deleteSplitConfigurationRule(
     string $merchantId,
     string $splitConfigurationId,
     string $ruleId
@@ -792,7 +783,7 @@ $splitConfigurationId = 'splitConfigurationId4';
 $ruleId = 'ruleId4';
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->deleteMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleId(
+$apiResponse = $splitConfigurationMerchantLevelApi->deleteSplitConfigurationRule(
     $merchantId,
     $splitConfigurationId,
     $ruleId
@@ -823,7 +814,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Split Configurations-Split Configuration Id-Rules-Rule Id
+# Update Split Configuration Rule
 
 Changes the [split conditions of the rule](https://docs.adyen.com/platforms/automatic-split-configuration/manage-split-configurations/api/#update-condition) specified in the path.
 
@@ -832,7 +823,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleId(
+function updateSplitConfigurationRule(
     string $merchantId,
     string $splitConfigurationId,
     string $ruleId,
@@ -870,7 +861,7 @@ $body = UpdateSplitConfigurationRuleRequestBuilder::init(
 )->build();
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleId(
+$apiResponse = $splitConfigurationMerchantLevelApi->updateSplitConfigurationRule(
     $merchantId,
     $splitConfigurationId,
     $ruleId,
@@ -959,7 +950,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Split Configurations-Split Configuration Id-Rules-Rule Id-Split Logic-Split Logic Id
+# Update Split Logic
 
 Changes the [split logic](https://docs.adyen.com/platforms/automatic-split-configuration/manage-split-configurations/api/#update-split-logic) specified in the path.
 
@@ -968,7 +959,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API - SplitConfiguration read and write
 
 ```php
-function patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleIdSplitLogicSplitLogicId(
+function updateSplitLogic(
     string $merchantId,
     string $splitConfigurationId,
     string $ruleId,
@@ -1022,7 +1013,7 @@ $body = UpdateSplitConfigurationLogicRequestBuilder::init(
     ->build();
 
 $splitConfigurationMerchantLevelApi = $client->getSplitConfigurationMerchantLevelApi();
-$apiResponse = $splitConfigurationMerchantLevelApi->patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleIdSplitLogicSplitLogicId(
+$apiResponse = $splitConfigurationMerchantLevelApi->updateSplitLogic(
     $merchantId,
     $splitConfigurationId,
     $ruleId,

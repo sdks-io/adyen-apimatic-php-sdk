@@ -10,17 +10,17 @@ $ordersApi = $client->getOrdersApi();
 
 ## Methods
 
-* [Post-Orders](../../doc/controllers/orders.md#post-orders)
-* [Post-Orders-Cancel](../../doc/controllers/orders.md#post-orders-cancel)
-* [Post-Payment Methods-Balance](../../doc/controllers/orders.md#post-payment-methods-balance)
+* [Create Order](../../doc/controllers/orders.md#create-order)
+* [Cancel Order](../../doc/controllers/orders.md#cancel-order)
+* [Get Payment Method Balance](../../doc/controllers/orders.md#get-payment-method-balance)
 
 
-# Post-Orders
+# Create Order
 
 Creates an order to be used for partial payments. Make a POST `/orders` call before making a `/payments` call when processing payments with different payment methods.
 
 ```php
-function postOrders(?string $idempotencyKey = null, ?CreateOrderRequest $body = null): ApiResponse
+function createOrder(?string $idempotencyKey = null, ?CreateOrderRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -47,7 +47,7 @@ $body = CreateOrderRequestBuilder::init(
 )->build();
 
 $ordersApi = $client->getOrdersApi();
-$apiResponse = $ordersApi->postOrders(
+$apiResponse = $ordersApi->createOrder(
     null,
     $body
 );
@@ -97,12 +97,12 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Orders-Cancel
+# Cancel Order
 
 Cancels an order. Cancellation of an order results in an automatic rollback of all payments made in the order, either by canceling or refunding the payment, depending on the type of payment method.
 
 ```php
-function postOrdersCancel(?string $idempotencyKey = null, ?CancelOrderRequest $body = null): ApiResponse
+function cancelOrder(?string $idempotencyKey = null, ?CancelOrderRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -128,7 +128,7 @@ $body = CancelOrderRequestBuilder::init(
 )->build();
 
 $ordersApi = $client->getOrdersApi();
-$apiResponse = $ordersApi->postOrdersCancel(
+$apiResponse = $ordersApi->cancelOrder(
     null,
     $body
 );
@@ -167,15 +167,12 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payment Methods-Balance
+# Get Payment Method Balance
 
 Retrieves the balance remaining on a shopper's gift card. To check a gift card's balance, make a POST `/paymentMethods/balance` call and include the gift card's details inside a `paymentMethod` object.
 
 ```php
-function postPaymentMethodsBalance(
-    ?string $idempotencyKey = null,
-    ?BalanceCheckRequest $body = null
-): ApiResponse
+function getPaymentMethodBalance(?string $idempotencyKey = null, ?BalanceCheckRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -206,7 +203,7 @@ $body = BalanceCheckRequestBuilder::init(
 )->build();
 
 $ordersApi = $client->getOrdersApi();
-$apiResponse = $ordersApi->postPaymentMethodsBalance(
+$apiResponse = $ordersApi->getPaymentMethodBalance(
     null,
     $body
 );

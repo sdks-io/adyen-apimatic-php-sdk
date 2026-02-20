@@ -47,7 +47,7 @@ class TerminalSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdTerminalLogos(string $merchantId, string $model): ApiResponse
+    public function getMerchantTerminalLogo(string $merchantId, string $model): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/terminalLogos')
             ->server(Server::DEFAULT1)
@@ -120,11 +120,8 @@ class TerminalSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdTerminalLogos(
-        string $merchantId,
-        string $model,
-        ?Logo $body = null
-    ): ApiResponse {
+    public function updateMerchantTerminalLogo(string $merchantId, string $model, ?Logo $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/merchants/{merchantId}/terminalLogos')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -196,7 +193,7 @@ class TerminalSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdTerminalSettings(string $merchantId): ApiResponse
+    public function getMerchantTerminalSettings(string $merchantId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/terminalSettings')
             ->server(Server::DEFAULT1)
@@ -272,10 +269,8 @@ class TerminalSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdTerminalSettings(
-        string $merchantId,
-        ?TerminalSettings $body = null
-    ): ApiResponse {
+    public function updateMerchantTerminalSettings(string $merchantId, ?TerminalSettings $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/merchants/{merchantId}/terminalSettings')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')

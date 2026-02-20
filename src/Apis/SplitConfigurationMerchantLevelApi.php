@@ -38,7 +38,7 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdSplitConfigurations(string $merchantId): ApiResponse
+    public function listSplitConfigurations(string $merchantId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/splitConfigurations')
             ->server(Server::DEFAULT1)
@@ -103,10 +103,8 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdSplitConfigurations(
-        string $merchantId,
-        ?SplitConfiguration $body = null
-    ): ApiResponse {
+    public function createSplitConfiguration(string $merchantId, ?SplitConfiguration $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/splitConfigurations')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -167,10 +165,8 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
-        string $merchantId,
-        string $splitConfigurationId
-    ): ApiResponse {
+    public function deleteSplitConfiguration(string $merchantId, string $splitConfigurationId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::DELETE,
             '/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}'
@@ -233,10 +229,8 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
-        string $merchantId,
-        string $splitConfigurationId
-    ): ApiResponse {
+    public function getSplitConfiguration(string $merchantId, string $splitConfigurationId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}'
@@ -300,7 +294,7 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+    public function updateSplitConfiguration(
         string $merchantId,
         string $splitConfigurationId,
         ?UpdateSplitConfigurationRequest $body = null
@@ -371,7 +365,7 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdSplitConfigurationsSplitConfigurationId(
+    public function createSplitConfigurationRule(
         string $merchantId,
         string $splitConfigurationId,
         ?SplitConfigurationRule $body = null
@@ -441,7 +435,7 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleId(
+    public function deleteSplitConfigurationRule(
         string $merchantId,
         string $splitConfigurationId,
         string $ruleId
@@ -512,7 +506,7 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleId(
+    public function updateSplitConfigurationRule(
         string $merchantId,
         string $splitConfigurationId,
         string $ruleId,
@@ -587,7 +581,7 @@ class SplitConfigurationMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdSplitConfigurationsSplitConfigurationIdRulesRuleIdSplitLogicSplitLogicId(
+    public function updateSplitLogic(
         string $merchantId,
         string $splitConfigurationId,
         string $ruleId,

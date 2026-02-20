@@ -10,13 +10,13 @@ $accountMerchantlevelApi = $client->getAccountMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants](../../doc/controllers/account-merchantlevel.md#get-merchants)
-* [Post-Merchants](../../doc/controllers/account-merchantlevel.md#post-merchants)
-* [Get-Merchants-Merchant Id](../../doc/controllers/account-merchantlevel.md#get-merchants-merchant-id)
-* [Post-Merchants-Merchant Id-Activate](../../doc/controllers/account-merchantlevel.md#post-merchants-merchant-id-activate)
+* [List Merchants](../../doc/controllers/account-merchantlevel.md#list-merchants)
+* [Create Merchant](../../doc/controllers/account-merchantlevel.md#create-merchant)
+* [Get Merchant](../../doc/controllers/account-merchantlevel.md#get-merchant)
+* [Activate Merchant](../../doc/controllers/account-merchantlevel.md#activate-merchant)
 
 
-# Get-Merchants
+# List Merchants
 
 Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.
 
@@ -25,7 +25,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Account read
 
 ```php
-function getMerchants(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
+function listMerchants(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
 ```
 
 ## Parameters
@@ -43,7 +43,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 
 ```php
 $accountMerchantLevelApi = $client->getAccountMerchantLevelApi();
-$apiResponse = $accountMerchantLevelApi->getMerchants();
+$apiResponse = $accountMerchantLevelApi->listMerchants();
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -330,7 +330,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants
+# Create Merchant
 
 Creates a merchant account for the company account specified in the request.
 
@@ -341,7 +341,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Accounts read and write
 
 ```php
-function postMerchants(?CreateMerchantRequest $body = null): ApiResponse
+function createMerchant(?CreateMerchantRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -367,7 +367,7 @@ $body = CreateMerchantRequestBuilder::init(
     ->build();
 
 $accountMerchantLevelApi = $client->getAccountMerchantLevelApi();
-$apiResponse = $accountMerchantLevelApi->postMerchants($body);
+$apiResponse = $accountMerchantLevelApi->createMerchant($body);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -407,7 +407,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id
+# Get Merchant
 
 Returns the merchant account specified in the path. Your API credential must have access to the merchant account.
 
@@ -416,7 +416,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Account read
 
 ```php
-function getMerchantsMerchantId(string $merchantId): ApiResponse
+function getMerchant(string $merchantId): ApiResponse
 ```
 
 ## Parameters
@@ -435,7 +435,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $accountMerchantLevelApi = $client->getAccountMerchantLevelApi();
-$apiResponse = $accountMerchantLevelApi->getMerchantsMerchantId($merchantId);
+$apiResponse = $accountMerchantLevelApi->getMerchant($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -491,7 +491,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Activate
+# Activate Merchant
 
 Sends a request to activate the merchant account identified in the path.
 
@@ -504,7 +504,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Accounts read and write
 
 ```php
-function postMerchantsMerchantIdActivate(string $merchantId): ApiResponse
+function activateMerchant(string $merchantId): ApiResponse
 ```
 
 ## Parameters
@@ -523,7 +523,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $accountMerchantLevelApi = $client->getAccountMerchantLevelApi();
-$apiResponse = $accountMerchantLevelApi->postMerchantsMerchantIdActivate($merchantId);
+$apiResponse = $accountMerchantLevelApi->activateMerchant($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());

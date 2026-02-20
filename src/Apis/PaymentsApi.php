@@ -83,7 +83,7 @@ class PaymentsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCardDetails(?string $idempotencyKey = null, ?CardDetailsRequest $body = null): ApiResponse
+    public function getCardDetails(?string $idempotencyKey = null, ?CardDetailsRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/cardDetails')
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -108,10 +108,8 @@ class PaymentsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentMethods(
-        ?string $idempotencyKey = null,
-        ?PaymentMethodsRequest $body = null
-    ): ApiResponse {
+    public function getPaymentMethods(?string $idempotencyKey = null, ?PaymentMethodsRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/paymentMethods')
             ->auth('BasicAuth', 'ApiKeyAuth')
             ->parameters(
@@ -171,7 +169,7 @@ class PaymentsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPayments(?string $idempotencyKey = null, ?PaymentRequest $body = null): ApiResponse
+    public function createPayment(?string $idempotencyKey = null, ?PaymentRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/payments')
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -230,10 +228,8 @@ class PaymentsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentsDetails(
-        ?string $idempotencyKey = null,
-        ?PaymentDetailsRequest $body = null
-    ): ApiResponse {
+    public function getPaymentDetails(?string $idempotencyKey = null, ?PaymentDetailsRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/payments/details')
             ->auth('BasicAuth', 'ApiKeyAuth')
             ->parameters(
@@ -297,7 +293,7 @@ class PaymentsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postSessions(
+    public function createCheckoutSession(
         ?string $idempotencyKey = null,
         ?CreateCheckoutSessionRequest $body = null
     ): ApiResponse {
@@ -323,7 +319,7 @@ class PaymentsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getSessionsSessionId(string $sessionId, string $sessionResult): ApiResponse
+    public function getCheckoutSession(string $sessionId, string $sessionResult): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/sessions/{sessionId}')
             ->auth('BasicAuth', 'ApiKeyAuth')

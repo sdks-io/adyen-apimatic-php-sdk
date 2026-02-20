@@ -40,7 +40,7 @@ class TerminalSettingsTerminalLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getTerminalsTerminalIdTerminalLogos(string $terminalId): ApiResponse
+    public function getTerminalLogo(string $terminalId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/terminals/{terminalId}/terminalLogos')
             ->server(Server::DEFAULT1)
@@ -105,7 +105,7 @@ class TerminalSettingsTerminalLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchTerminalsTerminalIdTerminalLogos(string $terminalId, ?Logo $body = null): ApiResponse
+    public function updateTerminalLogo(string $terminalId, ?Logo $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/terminals/{terminalId}/terminalLogos')
             ->server(Server::DEFAULT1)
@@ -175,7 +175,7 @@ class TerminalSettingsTerminalLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getTerminalsTerminalIdTerminalSettings(string $terminalId): ApiResponse
+    public function getTerminalSettings(string $terminalId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/terminals/{terminalId}/terminalSettings')
             ->server(Server::DEFAULT1)
@@ -247,10 +247,8 @@ class TerminalSettingsTerminalLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchTerminalsTerminalIdTerminalSettings(
-        string $terminalId,
-        ?TerminalSettings $body = null
-    ): ApiResponse {
+    public function updateTerminalSettings(string $terminalId, ?TerminalSettings $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/terminals/{terminalId}/terminalSettings')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')

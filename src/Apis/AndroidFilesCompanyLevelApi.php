@@ -51,7 +51,7 @@ class AndroidFilesCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdAndroidApps(
+    public function listAndroidApps(
         string $companyId,
         ?int $pageNumber = null,
         ?int $pageSize = null,
@@ -125,7 +125,7 @@ class AndroidFilesCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdAndroidApps(string $companyId): ApiResponse
+    public function createAndroidApp(string $companyId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/companies/{companyId}/androidApps')
             ->server(Server::DEFAULT1)
@@ -190,7 +190,7 @@ class AndroidFilesCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdAndroidAppsId(string $companyId, string $id): ApiResponse
+    public function getAndroidApp(string $companyId, string $id): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/companies/{companyId}/androidApps/{id}')
             ->server(Server::DEFAULT1)
@@ -256,7 +256,7 @@ class AndroidFilesCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchCompaniesCompanyIdAndroidAppsId(string $companyId, string $id): ApiResponse
+    public function updateAndroidApp(string $companyId, string $id): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/companies/{companyId}/androidApps/{id}')
             ->server(Server::DEFAULT1)
@@ -330,7 +330,7 @@ class AndroidFilesCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdAndroidCertificates(
+    public function listAndroidCertificates(
         string $companyId,
         ?int $pageNumber = null,
         ?int $pageSize = null,
@@ -395,7 +395,7 @@ class AndroidFilesCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdAndroidCertificates(string $companyId): ApiResponse
+    public function uploadAndroidCertificate(string $companyId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/companies/{companyId}/androidCertificates')
             ->server(Server::DEFAULT1)

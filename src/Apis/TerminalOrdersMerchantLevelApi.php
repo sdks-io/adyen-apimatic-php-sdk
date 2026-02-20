@@ -48,7 +48,7 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdBillingEntities(string $merchantId, ?string $name = null): ApiResponse
+    public function listMerchantBillingEntities(string $merchantId, ?string $name = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/billingEntities')
             ->server(Server::DEFAULT1)
@@ -117,7 +117,7 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdShippingLocations(
+    public function listMerchantShippingLocations(
         string $merchantId,
         ?string $name = null,
         ?int $offset = null,
@@ -188,10 +188,8 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdShippingLocations(
-        string $merchantId,
-        ?ShippingLocation $body = null
-    ): ApiResponse {
+    public function createMerchantShippingLocation(string $merchantId, ?ShippingLocation $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/shippingLocations')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -257,7 +255,7 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdTerminalModels(string $merchantId): ApiResponse
+    public function listMerchantTerminalModels(string $merchantId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/terminalModels')
             ->server(Server::DEFAULT1)
@@ -323,7 +321,7 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdTerminalOrders(
+    public function listMerchantTerminalOrders(
         string $merchantId,
         ?string $customerOrderReference = null,
         ?string $status = null,
@@ -398,10 +396,8 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdTerminalOrders(
-        string $merchantId,
-        ?TerminalOrderRequest $body = null
-    ): ApiResponse {
+    public function createMerchantTerminalOrder(string $merchantId, ?TerminalOrderRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/terminalOrders')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -466,7 +462,7 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdTerminalOrdersOrderId(string $merchantId, string $orderId): ApiResponse
+    public function getMerchantTerminalOrder(string $merchantId, string $orderId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
@@ -541,7 +537,7 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdTerminalOrdersOrderId(
+    public function updateMerchantTerminalOrder(
         string $merchantId,
         string $orderId,
         ?TerminalOrderRequest $body = null
@@ -616,10 +612,8 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdTerminalOrdersOrderIdCancel(
-        string $merchantId,
-        string $orderId
-    ): ApiResponse {
+    public function cancelMerchantTerminalOrder(string $merchantId, string $orderId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::POST,
             '/merchants/{merchantId}/terminalOrders/{orderId}/cancel'
@@ -695,7 +689,7 @@ class TerminalOrdersMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdTerminalProducts(
+    public function listMerchantTerminalProducts(
         string $merchantId,
         string $country,
         ?string $terminalModelId = null,

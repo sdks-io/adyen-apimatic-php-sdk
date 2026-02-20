@@ -10,13 +10,13 @@ $terminalsettingsMerchantlevelApi = $client->getTerminalsettingsMerchantlevelApi
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Terminal Logos](../../doc/controllers/terminalsettings-merchantlevel.md#get-merchants-merchant-id-terminal-logos)
-* [Patch-Merchants-Merchant Id-Terminal Logos](../../doc/controllers/terminalsettings-merchantlevel.md#patch-merchants-merchant-id-terminal-logos)
-* [Get-Merchants-Merchant Id-Terminal Settings](../../doc/controllers/terminalsettings-merchantlevel.md#get-merchants-merchant-id-terminal-settings)
-* [Patch-Merchants-Merchant Id-Terminal Settings](../../doc/controllers/terminalsettings-merchantlevel.md#patch-merchants-merchant-id-terminal-settings)
+* [Get Merchant Terminal Logo](../../doc/controllers/terminalsettings-merchantlevel.md#get-merchant-terminal-logo)
+* [Update Merchant Terminal Logo](../../doc/controllers/terminalsettings-merchantlevel.md#update-merchant-terminal-logo)
+* [Get Merchant Terminal Settings](../../doc/controllers/terminalsettings-merchantlevel.md#get-merchant-terminal-settings)
+* [Update Merchant Terminal Settings](../../doc/controllers/terminalsettings-merchantlevel.md#update-merchant-terminal-settings)
 
 
-# Get-Merchants-Merchant Id-Terminal Logos
+# Get Merchant Terminal Logo
 
 Returns the logo that is configured for a specific payment terminal model at the merchant account identified in the path.
 The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.
@@ -30,7 +30,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdTerminalLogos(string $merchantId, string $model): ApiResponse
+function getMerchantTerminalLogo(string $merchantId, string $model): ApiResponse
 ```
 
 ## Parameters
@@ -52,7 +52,7 @@ $merchantId = 'merchantId6';
 $model = 'model2';
 
 $terminalSettingsMerchantLevelApi = $client->getTerminalSettingsMerchantLevelApi();
-$apiResponse = $terminalSettingsMerchantLevelApi->getMerchantsMerchantIdTerminalLogos(
+$apiResponse = $terminalSettingsMerchantLevelApi->getMerchantTerminalLogo(
     $merchantId,
     $model
 );
@@ -90,7 +90,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Terminal Logos
+# Update Merchant Terminal Logo
 
 Updates the logo for a specific payment terminal model at the merchant account identified in the path. You can update the logo for only one terminal model at a time.
 This logo applies to all terminals of the specified model under the merchant account, unless a different logo is configured at a lower level (store or individual terminal).
@@ -105,11 +105,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchMerchantsMerchantIdTerminalLogos(
-    string $merchantId,
-    string $model,
-    ?Logo $body = null
-): ApiResponse
+function updateMerchantTerminalLogo(string $merchantId, string $model, ?Logo $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -136,7 +132,7 @@ $body = LogoBuilder::init()
     ->build();
 
 $terminalSettingsMerchantLevelApi = $client->getTerminalSettingsMerchantLevelApi();
-$apiResponse = $terminalSettingsMerchantLevelApi->patchMerchantsMerchantIdTerminalLogos(
+$apiResponse = $terminalSettingsMerchantLevelApi->updateMerchantTerminalLogo(
     $merchantId,
     $model,
     $body
@@ -175,7 +171,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Terminal Settings
+# Get Merchant Terminal Settings
 
 Returns the payment terminal settings that are configured for the merchant account identified in the path. These settings apply to all terminals under the merchant account unless different values are configured at a lower level (store or individual terminal).
 
@@ -191,7 +187,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdTerminalSettings(string $merchantId): ApiResponse
+function getMerchantTerminalSettings(string $merchantId): ApiResponse
 ```
 
 ## Parameters
@@ -210,7 +206,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $terminalSettingsMerchantLevelApi = $client->getTerminalSettingsMerchantLevelApi();
-$apiResponse = $terminalSettingsMerchantLevelApi->getMerchantsMerchantIdTerminalSettings($merchantId);
+$apiResponse = $terminalSettingsMerchantLevelApi->getMerchantTerminalSettings($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -334,7 +330,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Terminal Settings
+# Update Merchant Terminal Settings
 
 Updates payment terminal settings for the merchant account identified in the path.
 These settings apply to all terminals under the merchant account, unless different values are configured at a lower level (store or individual terminal).
@@ -354,10 +350,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchMerchantsMerchantIdTerminalSettings(
-    string $merchantId,
-    ?TerminalSettings $body = null
-): ApiResponse
+function updateMerchantTerminalSettings(string $merchantId, ?TerminalSettings $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -435,7 +428,7 @@ $body = TerminalSettingsBuilder::init()
     ->build();
 
 $terminalSettingsMerchantLevelApi = $client->getTerminalSettingsMerchantLevelApi();
-$apiResponse = $terminalSettingsMerchantLevelApi->patchMerchantsMerchantIdTerminalSettings(
+$apiResponse = $terminalSettingsMerchantLevelApi->updateMerchantTerminalSettings(
     $merchantId,
     $body
 );

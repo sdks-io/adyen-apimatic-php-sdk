@@ -35,10 +35,8 @@ class ClientKeyCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKey(
-        string $companyId,
-        string $apiCredentialId
-    ): ApiResponse {
+    public function generateCompanyClientKey(string $companyId, string $apiCredentialId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::POST,
             '/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey'

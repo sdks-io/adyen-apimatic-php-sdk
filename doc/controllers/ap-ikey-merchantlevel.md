@@ -9,7 +9,7 @@ $apIkeyMerchantlevelApi = $client->getApIkeyMerchantlevelApi();
 `ApIkeyMerchantlevelApi`
 
 
-# Post-Merchants-Merchant Id-Api Credentials-Api Credential Id-Generate Api Key
+# Generate Merchant Api Key
 
 Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one.
 
@@ -18,10 +18,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function postMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKey(
-    string $merchantId,
-    string $apiCredentialId
-): ApiResponse
+function generateMerchantApiKey(string $merchantId, string $apiCredentialId): ApiResponse
 ```
 
 ## Parameters
@@ -43,7 +40,7 @@ $merchantId = 'merchantId6';
 $apiCredentialId = 'apiCredentialId8';
 
 $apiKeyMerchantLevelApi = $client->getApiKeyMerchantLevelApi();
-$apiResponse = $apiKeyMerchantLevelApi->postMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKey(
+$apiResponse = $apiKeyMerchantLevelApi->generateMerchantApiKey(
     $merchantId,
     $apiCredentialId
 );

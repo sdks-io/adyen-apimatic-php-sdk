@@ -48,7 +48,7 @@ class WebhooksMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdWebhooks(
+    public function listMerchantWebhooks(
         string $merchantId,
         ?int $pageNumber = null,
         ?int $pageSize = null
@@ -114,10 +114,8 @@ class WebhooksMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdWebhooks(
-        string $merchantId,
-        ?CreateMerchantWebhookRequest $body = null
-    ): ApiResponse {
+    public function createMerchantWebhook(string $merchantId, ?CreateMerchantWebhookRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/webhooks')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -178,7 +176,7 @@ class WebhooksMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteMerchantsMerchantIdWebhooksWebhookId(string $merchantId, string $webhookId): ApiResponse
+    public function deleteMerchantWebhook(string $merchantId, string $webhookId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::DELETE, '/merchants/{merchantId}/webhooks/{webhookId}')
             ->server(Server::DEFAULT1)
@@ -239,7 +237,7 @@ class WebhooksMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdWebhooksWebhookId(string $merchantId, string $webhookId): ApiResponse
+    public function getMerchantWebhook(string $merchantId, string $webhookId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/webhooks/{webhookId}')
             ->server(Server::DEFAULT1)
@@ -303,7 +301,7 @@ class WebhooksMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdWebhooksWebhookId(
+    public function updateMerchantWebhook(
         string $merchantId,
         string $webhookId,
         ?UpdateMerchantWebhookRequest $body = null
@@ -374,10 +372,8 @@ class WebhooksMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdWebhooksWebhookIdGenerateHmac(
-        string $merchantId,
-        string $webhookId
-    ): ApiResponse {
+    public function generateMerchantWebhookHmac(string $merchantId, string $webhookId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::POST,
             '/merchants/{merchantId}/webhooks/{webhookId}/generateHmac'
@@ -448,7 +444,7 @@ class WebhooksMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdWebhooksWebhookIdTest(
+    public function testMerchantWebhook(
         string $merchantId,
         string $webhookId,
         ?TestWebhookRequest $body = null

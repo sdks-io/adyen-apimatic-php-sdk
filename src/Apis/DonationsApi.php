@@ -33,7 +33,7 @@ class DonationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postDonationCampaigns(
+    public function getDonationCampaigns(
         ?string $idempotencyKey = null,
         ?DonationCampaignsRequest $body = null
     ): ApiResponse {
@@ -92,7 +92,7 @@ class DonationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postDonations(?string $idempotencyKey = null, ?DonationPaymentRequest $body = null): ApiResponse
+    public function createDonation(?string $idempotencyKey = null, ?DonationPaymentRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/donations')
             ->auth('BasicAuth', 'ApiKeyAuth')

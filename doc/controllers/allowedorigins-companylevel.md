@@ -10,13 +10,13 @@ $allowedoriginsCompanylevelApi = $client->getAllowedoriginsCompanylevelApi();
 
 ## Methods
 
-* [Get-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins](../../doc/controllers/allowedorigins-companylevel.md#get-companies-company-id-api-credentials-api-credential-id-allowed-origins)
-* [Post-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins](../../doc/controllers/allowedorigins-companylevel.md#post-companies-company-id-api-credentials-api-credential-id-allowed-origins)
-* [Delete-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id](../../doc/controllers/allowedorigins-companylevel.md#delete-companies-company-id-api-credentials-api-credential-id-allowed-origins-origin-id)
-* [Get-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id](../../doc/controllers/allowedorigins-companylevel.md#get-companies-company-id-api-credentials-api-credential-id-allowed-origins-origin-id)
+* [List Company Api Credential Origins](../../doc/controllers/allowedorigins-companylevel.md#list-company-api-credential-origins)
+* [Create Company Api Credential Origin](../../doc/controllers/allowedorigins-companylevel.md#create-company-api-credential-origin)
+* [Delete Company Api Credential Origin](../../doc/controllers/allowedorigins-companylevel.md#delete-company-api-credential-origin)
+* [Get Company Api Credential Origin](../../doc/controllers/allowedorigins-companylevel.md#get-company-api-credential-origin)
 
 
-# Get-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins
+# List Company Api Credential Origins
 
 Returns the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the API credential identified in the path.
 
@@ -25,10 +25,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(
-    string $companyId,
-    string $apiCredentialId
-): ApiResponse
+function listCompanyApiCredentialOrigins(string $companyId, string $apiCredentialId): ApiResponse
 ```
 
 ## Parameters
@@ -50,7 +47,7 @@ $companyId = 'companyId0';
 $apiCredentialId = 'apiCredentialId8';
 
 $allowedOriginsCompanyLevelApi = $client->getAllowedOriginsCompanyLevelApi();
-$apiResponse = $allowedOriginsCompanyLevelApi->getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(
+$apiResponse = $allowedOriginsCompanyLevelApi->listCompanyApiCredentialOrigins(
     $companyId,
     $apiCredentialId
 );
@@ -107,7 +104,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins
+# Create Company Api Credential Origin
 
 Adds a new [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) to the API credential's list of allowed origins.
 
@@ -116,7 +113,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function postCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(
+function createCompanyApiCredentialOrigin(
     string $companyId,
     string $apiCredentialId,
     ?AllowedOrigin $body = null
@@ -147,7 +144,7 @@ $body = AllowedOriginBuilder::init(
 )->build();
 
 $allowedOriginsCompanyLevelApi = $client->getAllowedOriginsCompanyLevelApi();
-$apiResponse = $allowedOriginsCompanyLevelApi->postCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(
+$apiResponse = $allowedOriginsCompanyLevelApi->createCompanyApiCredentialOrigin(
     $companyId,
     $apiCredentialId,
     $body
@@ -192,7 +189,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id
+# Delete Company Api Credential Origin
 
 Removes the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) identified in the path. As soon as an allowed origin is removed, we no longer accept client-side requests from that domain.
 
@@ -201,7 +198,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function deleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+function deleteCompanyApiCredentialOrigin(
     string $companyId,
     string $apiCredentialId,
     string $originId
@@ -230,7 +227,7 @@ $apiCredentialId = 'apiCredentialId8';
 $originId = 'originId6';
 
 $allowedOriginsCompanyLevelApi = $client->getAllowedOriginsCompanyLevelApi();
-$apiResponse = $allowedOriginsCompanyLevelApi->deleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+$apiResponse = $allowedOriginsCompanyLevelApi->deleteCompanyApiCredentialOrigin(
     $companyId,
     $apiCredentialId,
     $originId
@@ -261,7 +258,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Companies-Company Id-Api Credentials-Api Credential Id-Allowed Origins-Origin Id
+# Get Company Api Credential Origin
 
 Returns the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) identified in the path.
 
@@ -270,7 +267,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—API credentials read and write
 
 ```php
-function getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+function getCompanyApiCredentialOrigin(
     string $companyId,
     string $apiCredentialId,
     string $originId
@@ -299,7 +296,7 @@ $apiCredentialId = 'apiCredentialId8';
 $originId = 'originId6';
 
 $allowedOriginsCompanyLevelApi = $client->getAllowedOriginsCompanyLevelApi();
-$apiResponse = $allowedOriginsCompanyLevelApi->getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+$apiResponse = $allowedOriginsCompanyLevelApi->getCompanyApiCredentialOrigin(
     $companyId,
     $apiCredentialId,
     $originId

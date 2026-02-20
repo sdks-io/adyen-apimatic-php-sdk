@@ -10,13 +10,13 @@ $usersMerchantlevelApi = $client->getUsersMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Users](../../doc/controllers/users-merchantlevel.md#get-merchants-merchant-id-users)
-* [Post-Merchants-Merchant Id-Users](../../doc/controllers/users-merchantlevel.md#post-merchants-merchant-id-users)
-* [Get-Merchants-Merchant Id-Users-User Id](../../doc/controllers/users-merchantlevel.md#get-merchants-merchant-id-users-user-id)
-* [Patch-Merchants-Merchant Id-Users-User Id](../../doc/controllers/users-merchantlevel.md#patch-merchants-merchant-id-users-user-id)
+* [List Merchant Users](../../doc/controllers/users-merchantlevel.md#list-merchant-users)
+* [Create Merchant User](../../doc/controllers/users-merchantlevel.md#create-merchant-user)
+* [Get Merchant User](../../doc/controllers/users-merchantlevel.md#get-merchant-user)
+* [Update Merchant User](../../doc/controllers/users-merchantlevel.md#update-merchant-user)
 
 
-# Get-Merchants-Merchant Id-Users
+# List Merchant Users
 
 Returns a list of users associated with the `merchantId` specified in the path.
 
@@ -25,7 +25,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Users read and write
 
 ```php
-function getMerchantsMerchantIdUsers(
+function listMerchantUsers(
     string $merchantId,
     ?int $pageNumber = null,
     ?int $pageSize = null,
@@ -52,7 +52,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $usersMerchantLevelApi = $client->getUsersMerchantLevelApi();
-$apiResponse = $usersMerchantLevelApi->getMerchantsMerchantIdUsers($merchantId);
+$apiResponse = $usersMerchantLevelApi->listMerchantUsers($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -79,7 +79,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Users
+# Create Merchant User
 
 Creates a user for the `merchantId` specified in the path.
 
@@ -88,7 +88,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Users read and write
 
 ```php
-function postMerchantsMerchantIdUsers(string $merchantId, ?CreateMerchantUserRequest $body = null): ApiResponse
+function createMerchantUser(string $merchantId, ?CreateMerchantUserRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -125,7 +125,7 @@ $body = CreateMerchantUserRequestBuilder::init(
     ->build();
 
 $usersMerchantLevelApi = $client->getUsersMerchantLevelApi();
-$apiResponse = $usersMerchantLevelApi->postMerchantsMerchantIdUsers(
+$apiResponse = $usersMerchantLevelApi->createMerchantUser(
     $merchantId,
     $body
 );
@@ -179,7 +179,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Users-User Id
+# Get Merchant User
 
 Returns user details for the `userId` and the `merchantId` specified in the path.
 
@@ -188,7 +188,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Users read and write
 
 ```php
-function getMerchantsMerchantIdUsersUserId(string $merchantId, string $userId): ApiResponse
+function getMerchantUser(string $merchantId, string $userId): ApiResponse
 ```
 
 ## Parameters
@@ -210,7 +210,7 @@ $merchantId = 'merchantId6';
 $userId = 'userId0';
 
 $usersMerchantLevelApi = $client->getUsersMerchantLevelApi();
-$apiResponse = $usersMerchantLevelApi->getMerchantsMerchantIdUsersUserId(
+$apiResponse = $usersMerchantLevelApi->getMerchantUser(
     $merchantId,
     $userId
 );
@@ -240,7 +240,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Users-User Id
+# Update Merchant User
 
 Updates user details for the `userId` and the `merchantId` specified in the path.
 
@@ -249,7 +249,7 @@ To make this request, your API credential must have the following [role](https:/
 * Management API—Users read and write
 
 ```php
-function patchMerchantsMerchantIdUsersUserId(
+function updateMerchantUser(
     string $merchantId,
     string $userId,
     ?UpdateMerchantUserRequest $body = null
@@ -276,7 +276,7 @@ $merchantId = 'merchantId6';
 $userId = 'userId0';
 
 $usersMerchantLevelApi = $client->getUsersMerchantLevelApi();
-$apiResponse = $usersMerchantLevelApi->patchMerchantsMerchantIdUsersUserId(
+$apiResponse = $usersMerchantLevelApi->updateMerchantUser(
     $merchantId,
     $userId
 );

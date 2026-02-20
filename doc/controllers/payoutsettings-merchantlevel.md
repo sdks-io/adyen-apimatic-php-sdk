@@ -10,14 +10,14 @@ $payoutsettingsMerchantlevelApi = $client->getPayoutsettingsMerchantlevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Payout Settings](../../doc/controllers/payoutsettings-merchantlevel.md#get-merchants-merchant-id-payout-settings)
-* [Post-Merchants-Merchant Id-Payout Settings](../../doc/controllers/payoutsettings-merchantlevel.md#post-merchants-merchant-id-payout-settings)
-* [Delete-Merchants-Merchant Id-Payout Settings-Payout Settings Id](../../doc/controllers/payoutsettings-merchantlevel.md#delete-merchants-merchant-id-payout-settings-payout-settings-id)
-* [Get-Merchants-Merchant Id-Payout Settings-Payout Settings Id](../../doc/controllers/payoutsettings-merchantlevel.md#get-merchants-merchant-id-payout-settings-payout-settings-id)
-* [Patch-Merchants-Merchant Id-Payout Settings-Payout Settings Id](../../doc/controllers/payoutsettings-merchantlevel.md#patch-merchants-merchant-id-payout-settings-payout-settings-id)
+* [List Payout Settings](../../doc/controllers/payoutsettings-merchantlevel.md#list-payout-settings)
+* [Create Payout Setting](../../doc/controllers/payoutsettings-merchantlevel.md#create-payout-setting)
+* [Delete Payout Setting](../../doc/controllers/payoutsettings-merchantlevel.md#delete-payout-setting)
+* [Get Payout Setting](../../doc/controllers/payoutsettings-merchantlevel.md#get-payout-setting)
+* [Update Payout Setting](../../doc/controllers/payoutsettings-merchantlevel.md#update-payout-setting)
 
 
-# Get-Merchants-Merchant Id-Payout Settings
+# List Payout Settings
 
 Returns the list of payout settings for the merchant account identified in the path.
 
@@ -28,7 +28,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Payout account settings read
 
 ```php
-function getMerchantsMerchantIdPayoutSettings(string $merchantId): ApiResponse
+function listPayoutSettings(string $merchantId): ApiResponse
 ```
 
 ## Parameters
@@ -47,7 +47,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $payoutSettingsMerchantLevelApi = $client->getPayoutSettingsMerchantLevelApi();
-$apiResponse = $payoutSettingsMerchantLevelApi->getMerchantsMerchantIdPayoutSettings($merchantId);
+$apiResponse = $payoutSettingsMerchantLevelApi->listPayoutSettings($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -74,7 +74,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Payout Settings
+# Create Payout Setting
 
 Sends a request to add a payout setting for the merchant account specified in the path. A payout setting links the merchant account to the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the payout bank account. Adyen verifies the bank account before allowing and enabling the payout setting.
 
@@ -87,10 +87,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Payout account settings read and write
 
 ```php
-function postMerchantsMerchantIdPayoutSettings(
-    string $merchantId,
-    ?PayoutSettingsRequest $body = null
-): ApiResponse
+function createPayoutSetting(string $merchantId, ?PayoutSettingsRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -110,7 +107,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $payoutSettingsMerchantLevelApi = $client->getPayoutSettingsMerchantLevelApi();
-$apiResponse = $payoutSettingsMerchantLevelApi->postMerchantsMerchantIdPayoutSettings($merchantId);
+$apiResponse = $payoutSettingsMerchantLevelApi->createPayoutSetting($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -137,7 +134,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Merchants-Merchant Id-Payout Settings-Payout Settings Id
+# Delete Payout Setting
 
 Deletes the payout setting identified in the path.
 
@@ -148,10 +145,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Payout account settings read and write
 
 ```php
-function deleteMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
-    string $merchantId,
-    string $payoutSettingsId
-): ApiResponse
+function deletePayoutSetting(string $merchantId, string $payoutSettingsId): ApiResponse
 ```
 
 ## Parameters
@@ -173,7 +167,7 @@ $merchantId = 'merchantId6';
 $payoutSettingsId = 'payoutSettingsId6';
 
 $payoutSettingsMerchantLevelApi = $client->getPayoutSettingsMerchantLevelApi();
-$apiResponse = $payoutSettingsMerchantLevelApi->deleteMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
+$apiResponse = $payoutSettingsMerchantLevelApi->deletePayoutSetting(
     $merchantId,
     $payoutSettingsId
 );
@@ -203,7 +197,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Payout Settings-Payout Settings Id
+# Get Payout Setting
 
 Returns the payout setting identified in the path.
 
@@ -214,10 +208,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Payout account settings read
 
 ```php
-function getMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
-    string $merchantId,
-    string $payoutSettingsId
-): ApiResponse
+function getPayoutSetting(string $merchantId, string $payoutSettingsId): ApiResponse
 ```
 
 ## Parameters
@@ -239,7 +230,7 @@ $merchantId = 'merchantId6';
 $payoutSettingsId = 'payoutSettingsId6';
 
 $payoutSettingsMerchantLevelApi = $client->getPayoutSettingsMerchantLevelApi();
-$apiResponse = $payoutSettingsMerchantLevelApi->getMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
+$apiResponse = $payoutSettingsMerchantLevelApi->getPayoutSetting(
     $merchantId,
     $payoutSettingsId
 );
@@ -269,7 +260,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Payout Settings-Payout Settings Id
+# Update Payout Setting
 
 Updates the payout setting identified in the path. You can enable or disable the payout setting.
 
@@ -280,7 +271,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Payout account settings read and write
 
 ```php
-function patchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
+function updatePayoutSetting(
     string $merchantId,
     string $payoutSettingsId,
     ?UpdatePayoutSettingsRequest $body = null
@@ -307,7 +298,7 @@ $merchantId = 'merchantId6';
 $payoutSettingsId = 'payoutSettingsId6';
 
 $payoutSettingsMerchantLevelApi = $client->getPayoutSettingsMerchantLevelApi();
-$apiResponse = $payoutSettingsMerchantLevelApi->patchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
+$apiResponse = $payoutSettingsMerchantLevelApi->updatePayoutSetting(
     $merchantId,
     $payoutSettingsId
 );

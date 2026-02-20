@@ -10,17 +10,17 @@ $terminalsettingsStorelevelApi = $client->getTerminalsettingsStorelevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Stores-Reference-Terminal Logos](../../doc/controllers/terminalsettings-storelevel.md#get-merchants-merchant-id-stores-reference-terminal-logos)
-* [Patch-Merchants-Merchant Id-Stores-Reference-Terminal Logos](../../doc/controllers/terminalsettings-storelevel.md#patch-merchants-merchant-id-stores-reference-terminal-logos)
-* [Get-Merchants-Merchant Id-Stores-Reference-Terminal Settings](../../doc/controllers/terminalsettings-storelevel.md#get-merchants-merchant-id-stores-reference-terminal-settings)
-* [Patch-Merchants-Merchant Id-Stores-Reference-Terminal Settings](../../doc/controllers/terminalsettings-storelevel.md#patch-merchants-merchant-id-stores-reference-terminal-settings)
-* [Get-Stores-Store Id-Terminal Logos](../../doc/controllers/terminalsettings-storelevel.md#get-stores-store-id-terminal-logos)
-* [Patch-Stores-Store Id-Terminal Logos](../../doc/controllers/terminalsettings-storelevel.md#patch-stores-store-id-terminal-logos)
-* [Get-Stores-Store Id-Terminal Settings](../../doc/controllers/terminalsettings-storelevel.md#get-stores-store-id-terminal-settings)
-* [Patch-Stores-Store Id-Terminal Settings](../../doc/controllers/terminalsettings-storelevel.md#patch-stores-store-id-terminal-settings)
+* [Get Merchant Store Terminal Logo by Reference](../../doc/controllers/terminalsettings-storelevel.md#get-merchant-store-terminal-logo-by-reference)
+* [Update Merchant Store Terminal Logo by Reference](../../doc/controllers/terminalsettings-storelevel.md#update-merchant-store-terminal-logo-by-reference)
+* [Get Merchant Store Terminal Settings by Reference](../../doc/controllers/terminalsettings-storelevel.md#get-merchant-store-terminal-settings-by-reference)
+* [Update Merchant Store Terminal Settings by Reference](../../doc/controllers/terminalsettings-storelevel.md#update-merchant-store-terminal-settings-by-reference)
+* [Get Store Terminal Logo](../../doc/controllers/terminalsettings-storelevel.md#get-store-terminal-logo)
+* [Update Store Terminal Logo](../../doc/controllers/terminalsettings-storelevel.md#update-store-terminal-logo)
+* [Get Store Terminal Settings](../../doc/controllers/terminalsettings-storelevel.md#get-store-terminal-settings)
+* [Update Store Terminal Settings](../../doc/controllers/terminalsettings-storelevel.md#update-store-terminal-settings)
 
 
-# Get-Merchants-Merchant Id-Stores-Reference-Terminal Logos
+# Get Merchant Store Terminal Logo by Reference
 
 Returns the logo that is configured for a specific payment terminal model at the store identified in the path.
 The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.
@@ -34,7 +34,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdStoresReferenceTerminalLogos(
+function getMerchantStoreTerminalLogoByReference(
     string $merchantId,
     string $reference,
     string $model
@@ -63,7 +63,7 @@ $reference = 'reference4';
 $model = 'model2';
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->getMerchantsMerchantIdStoresReferenceTerminalLogos(
+$apiResponse = $terminalSettingsStoreLevelApi->getMerchantStoreTerminalLogoByReference(
     $merchantId,
     $reference,
     $model
@@ -102,7 +102,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Stores-Reference-Terminal Logos
+# Update Merchant Store Terminal Logo by Reference
 
 Updates the logo that is configured for a specific payment terminal model at the store identified in the path. You can update the logo for only one terminal model at a time.
 This logo applies to all terminals of the specified model under the store, unless a different logo is configured for an individual terminal.
@@ -117,7 +117,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchMerchantsMerchantIdStoresReferenceTerminalLogos(
+function updateMerchantStoreTerminalLogoByReference(
     string $merchantId,
     string $reference,
     string $model,
@@ -152,7 +152,7 @@ $body = LogoBuilder::init()
     ->build();
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->patchMerchantsMerchantIdStoresReferenceTerminalLogos(
+$apiResponse = $terminalSettingsStoreLevelApi->updateMerchantStoreTerminalLogoByReference(
     $merchantId,
     $reference,
     $model,
@@ -192,7 +192,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Stores-Reference-Terminal Settings
+# Get Merchant Store Terminal Settings by Reference
 
 Returns the payment terminal settings that are configured for the store identified in the path. These settings apply to all terminals under the store unless different values are configured for an individual terminal.
 
@@ -208,10 +208,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdStoresReferenceTerminalSettings(
-    string $merchantId,
-    string $reference
-): ApiResponse
+function getMerchantStoreTerminalSettingsByReference(string $merchantId, string $reference): ApiResponse
 ```
 
 ## Parameters
@@ -233,7 +230,7 @@ $merchantId = 'merchantId6';
 $reference = 'reference4';
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->getMerchantsMerchantIdStoresReferenceTerminalSettings(
+$apiResponse = $terminalSettingsStoreLevelApi->getMerchantStoreTerminalSettingsByReference(
     $merchantId,
     $reference
 );
@@ -358,7 +355,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Stores-Reference-Terminal Settings
+# Update Merchant Store Terminal Settings by Reference
 
 Updates payment terminal settings for the store identified in the path. These settings apply to all terminals under the store, unless different values are configured for an individual terminal.
 
@@ -377,7 +374,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchMerchantsMerchantIdStoresReferenceTerminalSettings(
+function updateMerchantStoreTerminalSettingsByReference(
     string $merchantId,
     string $reference,
     ?TerminalSettings $body = null
@@ -460,7 +457,7 @@ $body = TerminalSettingsBuilder::init()
     ->build();
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->patchMerchantsMerchantIdStoresReferenceTerminalSettings(
+$apiResponse = $terminalSettingsStoreLevelApi->updateMerchantStoreTerminalSettingsByReference(
     $merchantId,
     $reference,
     $body
@@ -609,7 +606,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Stores-Store Id-Terminal Logos
+# Get Store Terminal Logo
 
 Returns the logo that is configured for a specific payment terminal model at the store identified in the path.
 The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.
@@ -623,7 +620,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getStoresStoreIdTerminalLogos(string $storeId, string $model): ApiResponse
+function getStoreTerminalLogo(string $storeId, string $model): ApiResponse
 ```
 
 ## Parameters
@@ -645,7 +642,7 @@ $storeId = 'storeId6';
 $model = 'model2';
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->getStoresStoreIdTerminalLogos(
+$apiResponse = $terminalSettingsStoreLevelApi->getStoreTerminalLogo(
     $storeId,
     $model
 );
@@ -683,7 +680,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Stores-Store Id-Terminal Logos
+# Update Store Terminal Logo
 
 Updates the logo that is configured for a specific payment terminal model at the store identified in the path. You can update the logo for only one terminal model at a time.
 This logo applies to all terminals of the specified model under the store, unless a different logo is configured for an individual terminal.
@@ -698,7 +695,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchStoresStoreIdTerminalLogos(string $storeId, string $model, ?Logo $body = null): ApiResponse
+function updateStoreTerminalLogo(string $storeId, string $model, ?Logo $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -725,7 +722,7 @@ $body = LogoBuilder::init()
     ->build();
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->patchStoresStoreIdTerminalLogos(
+$apiResponse = $terminalSettingsStoreLevelApi->updateStoreTerminalLogo(
     $storeId,
     $model,
     $body
@@ -764,7 +761,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Stores-Store Id-Terminal Settings
+# Get Store Terminal Settings
 
 Returns the payment terminal settings that are configured for the store identified in the path. These settings apply to all terminals under the store unless different values are configured for an individual terminal.
 
@@ -780,7 +777,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getStoresStoreIdTerminalSettings(string $storeId): ApiResponse
+function getStoreTerminalSettings(string $storeId): ApiResponse
 ```
 
 ## Parameters
@@ -799,7 +796,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $storeId = 'storeId6';
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->getStoresStoreIdTerminalSettings($storeId);
+$apiResponse = $terminalSettingsStoreLevelApi->getStoreTerminalSettings($storeId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -947,7 +944,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Stores-Store Id-Terminal Settings
+# Update Store Terminal Settings
 
 Updates payment terminal settings for the store identified in the path. These settings apply to all terminals under the store, unless different values are configured for an individual terminal.
 
@@ -966,7 +963,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchStoresStoreIdTerminalSettings(string $storeId, ?TerminalSettings $body = null): ApiResponse
+function updateStoreTerminalSettings(string $storeId, ?TerminalSettings $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -1044,7 +1041,7 @@ $body = TerminalSettingsBuilder::init()
     ->build();
 
 $terminalSettingsStoreLevelApi = $client->getTerminalSettingsStoreLevelApi();
-$apiResponse = $terminalSettingsStoreLevelApi->patchStoresStoreIdTerminalSettings(
+$apiResponse = $terminalSettingsStoreLevelApi->updateStoreTerminalSettings(
     $storeId,
     $body
 );

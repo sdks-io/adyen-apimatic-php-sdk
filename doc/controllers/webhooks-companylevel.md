@@ -10,16 +10,16 @@ $webhooksCompanylevelApi = $client->getWebhooksCompanylevelApi();
 
 ## Methods
 
-* [Get-Companies-Company Id-Webhooks](../../doc/controllers/webhooks-companylevel.md#get-companies-company-id-webhooks)
-* [Post-Companies-Company Id-Webhooks](../../doc/controllers/webhooks-companylevel.md#post-companies-company-id-webhooks)
-* [Delete-Companies-Company Id-Webhooks-Webhook Id](../../doc/controllers/webhooks-companylevel.md#delete-companies-company-id-webhooks-webhook-id)
-* [Get-Companies-Company Id-Webhooks-Webhook Id](../../doc/controllers/webhooks-companylevel.md#get-companies-company-id-webhooks-webhook-id)
-* [Patch-Companies-Company Id-Webhooks-Webhook Id](../../doc/controllers/webhooks-companylevel.md#patch-companies-company-id-webhooks-webhook-id)
-* [Post-Companies-Company Id-Webhooks-Webhook Id-Generate Hmac](../../doc/controllers/webhooks-companylevel.md#post-companies-company-id-webhooks-webhook-id-generate-hmac)
-* [Post-Companies-Company Id-Webhooks-Webhook Id-Test](../../doc/controllers/webhooks-companylevel.md#post-companies-company-id-webhooks-webhook-id-test)
+* [List Company Webhooks](../../doc/controllers/webhooks-companylevel.md#list-company-webhooks)
+* [Create Company Webhook](../../doc/controllers/webhooks-companylevel.md#create-company-webhook)
+* [Delete Company Webhook](../../doc/controllers/webhooks-companylevel.md#delete-company-webhook)
+* [Get Company Webhook](../../doc/controllers/webhooks-companylevel.md#get-company-webhook)
+* [Update Company Webhook](../../doc/controllers/webhooks-companylevel.md#update-company-webhook)
+* [Generate Company Webhook Hmac](../../doc/controllers/webhooks-companylevel.md#generate-company-webhook-hmac)
+* [Test Company Webhook](../../doc/controllers/webhooks-companylevel.md#test-company-webhook)
 
 
-# Get-Companies-Company Id-Webhooks
+# List Company Webhooks
 
 Lists all webhook configurations for the company account.
 
@@ -29,11 +29,7 @@ To make this request, your API credential must have one of the following [roles]
 * Management API—Webhooks read and write
 
 ```php
-function getCompaniesCompanyIdWebhooks(
-    string $companyId,
-    ?int $pageNumber = null,
-    ?int $pageSize = null
-): ApiResponse
+function listCompanyWebhooks(string $companyId, ?int $pageNumber = null, ?int $pageSize = null): ApiResponse
 ```
 
 ## Parameters
@@ -54,7 +50,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $companyId = 'companyId0';
 
 $webhooksCompanyLevelApi = $client->getWebhooksCompanyLevelApi();
-$apiResponse = $webhooksCompanyLevelApi->getCompaniesCompanyIdWebhooks($companyId);
+$apiResponse = $webhooksCompanyLevelApi->listCompanyWebhooks($companyId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -199,7 +195,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Companies-Company Id-Webhooks
+# Create Company Webhook
 
 Subscribe to receive webhook notifications about events related to your company account. You can add basic authentication to make sure the data is secure.
 
@@ -208,10 +204,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function postCompaniesCompanyIdWebhooks(
-    string $companyId,
-    ?CreateCompanyWebhookRequest $body = null
-): ApiResponse
+function createCompanyWebhook(string $companyId, ?CreateCompanyWebhookRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -249,7 +242,7 @@ $body = CreateCompanyWebhookRequestBuilder::init(
     ->build();
 
 $webhooksCompanyLevelApi = $client->getWebhooksCompanyLevelApi();
-$apiResponse = $webhooksCompanyLevelApi->postCompaniesCompanyIdWebhooks(
+$apiResponse = $webhooksCompanyLevelApi->createCompanyWebhook(
     $companyId,
     $body
 );
@@ -384,7 +377,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Delete-Companies-Company Id-Webhooks-Webhook Id
+# Delete Company Webhook
 
 Remove the configuration for the webhook identified in the path.
 
@@ -393,7 +386,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function deleteCompaniesCompanyIdWebhooksWebhookId(string $companyId, string $webhookId): ApiResponse
+function deleteCompanyWebhook(string $companyId, string $webhookId): ApiResponse
 ```
 
 ## Parameters
@@ -415,7 +408,7 @@ $companyId = 'companyId0';
 $webhookId = 'webhookId6';
 
 $webhooksCompanyLevelApi = $client->getWebhooksCompanyLevelApi();
-$apiResponse = $webhooksCompanyLevelApi->deleteCompaniesCompanyIdWebhooksWebhookId(
+$apiResponse = $webhooksCompanyLevelApi->deleteCompanyWebhook(
     $companyId,
     $webhookId
 );
@@ -445,7 +438,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Companies-Company Id-Webhooks-Webhook Id
+# Get Company Webhook
 
 Returns the configuration for the webhook identified in the path.
 
@@ -455,7 +448,7 @@ To make this request, your API credential must have one of the following [roles]
 * Management API—Webhooks read and write
 
 ```php
-function getCompaniesCompanyIdWebhooksWebhookId(string $companyId, string $webhookId): ApiResponse
+function getCompanyWebhook(string $companyId, string $webhookId): ApiResponse
 ```
 
 ## Parameters
@@ -477,7 +470,7 @@ $companyId = 'companyId0';
 $webhookId = 'webhookId6';
 
 $webhooksCompanyLevelApi = $client->getWebhooksCompanyLevelApi();
-$apiResponse = $webhooksCompanyLevelApi->getCompaniesCompanyIdWebhooksWebhookId(
+$apiResponse = $webhooksCompanyLevelApi->getCompanyWebhook(
     $companyId,
     $webhookId
 );
@@ -608,7 +601,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Companies-Company Id-Webhooks-Webhook Id
+# Update Company Webhook
 
 Make changes to the configuration of the webhook identified in the path. The request contains the new values you want to have in the webhook configuration. The response contains the full configuration for the webhook, which includes the new values from the request.
 
@@ -617,7 +610,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function patchCompaniesCompanyIdWebhooksWebhookId(
+function updateCompanyWebhook(
     string $companyId,
     string $webhookId,
     ?UpdateCompanyWebhookRequest $body = null
@@ -648,7 +641,7 @@ $body = UpdateCompanyWebhookRequestBuilder::init()
     ->build();
 
 $webhooksCompanyLevelApi = $client->getWebhooksCompanyLevelApi();
-$apiResponse = $webhooksCompanyLevelApi->patchCompaniesCompanyIdWebhooksWebhookId(
+$apiResponse = $webhooksCompanyLevelApi->updateCompanyWebhook(
     $companyId,
     $webhookId,
     $body
@@ -780,7 +773,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Companies-Company Id-Webhooks-Webhook Id-Generate Hmac
+# Generate Company Webhook Hmac
 
 Returns an [HMAC key](https://en.wikipedia.org/wiki/HMAC) for the webhook identified in the path. This key allows you to check the integrity and the origin of the notifications you receive.By creating an HMAC key, you start receiving [HMAC-signed notifications](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures#enable-hmac-signatures) from Adyen. Find out more about how to [verify HMAC signatures](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures).
 
@@ -789,7 +782,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function postCompaniesCompanyIdWebhooksWebhookIdGenerateHmac(string $companyId, string $webhookId): ApiResponse
+function generateCompanyWebhookHmac(string $companyId, string $webhookId): ApiResponse
 ```
 
 ## Parameters
@@ -811,7 +804,7 @@ $companyId = 'companyId0';
 $webhookId = 'webhookId6';
 
 $webhooksCompanyLevelApi = $client->getWebhooksCompanyLevelApi();
-$apiResponse = $webhooksCompanyLevelApi->postCompaniesCompanyIdWebhooksWebhookIdGenerateHmac(
+$apiResponse = $webhooksCompanyLevelApi->generateCompanyWebhookHmac(
     $companyId,
     $webhookId
 );
@@ -849,7 +842,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Companies-Company Id-Webhooks-Webhook Id-Test
+# Test Company Webhook
 
 Sends sample notifications to test if the webhook is set up correctly.
 
@@ -864,7 +857,7 @@ To make this request, your API credential must have the following [roles](https:
 * Management API—Webhooks read and write
 
 ```php
-function postCompaniesCompanyIdWebhooksWebhookIdTest(
+function testCompanyWebhook(
     string $companyId,
     string $webhookId,
     ?TestCompanyWebhookRequest $body = null
@@ -904,7 +897,7 @@ $body = TestCompanyWebhookRequestBuilder::init()
     ->build();
 
 $webhooksCompanyLevelApi = $client->getWebhooksCompanyLevelApi();
-$apiResponse = $webhooksCompanyLevelApi->postCompaniesCompanyIdWebhooksWebhookIdTest(
+$apiResponse = $webhooksCompanyLevelApi->testCompanyWebhook(
     $companyId,
     $webhookId,
     $body

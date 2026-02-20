@@ -42,7 +42,7 @@ class UtilityApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postApplePaySessions(
+    public function getApplePaySession(
         ?string $idempotencyKey = null,
         ?ApplePaySessionRequest $body = null
     ): ApiResponse {
@@ -76,7 +76,7 @@ class UtilityApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postOriginKeys(?string $idempotencyKey = null, ?UtilityRequest $body = null): ApiResponse
+    public function generateOriginKeys(?string $idempotencyKey = null, ?UtilityRequest $body = null): ApiResponse
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated.', E_USER_DEPRECATED);
 
@@ -134,7 +134,7 @@ class UtilityApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaypalUpdateOrder(
+    public function updatePayPalOrder(
         ?string $idempotencyKey = null,
         ?PaypalUpdateOrderRequest $body = null
     ): ApiResponse {
@@ -190,7 +190,7 @@ class UtilityApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postValidateShopperId(ValidateShopperIdRequest $body): ApiResponse
+    public function validateShopperId(ValidateShopperIdRequest $body): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/validateShopperId')
             ->parameters(HeaderParam::init('Content-Type', 'application/json'), BodyParam::init($body)->required());

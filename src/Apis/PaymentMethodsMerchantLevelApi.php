@@ -46,7 +46,7 @@ class PaymentMethodsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdPaymentMethodSettings(
+    public function listPaymentMethodSettings(
         string $merchantId,
         ?string $storeId = null,
         ?string $businessLineId = null,
@@ -120,10 +120,8 @@ class PaymentMethodsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdPaymentMethodSettings(
-        string $merchantId,
-        ?PaymentMethodSetupInfo $body = null
-    ): ApiResponse {
+    public function createPaymentMethodSetting(string $merchantId, ?PaymentMethodSetupInfo $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/paymentMethodSettings')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -186,10 +184,8 @@ class PaymentMethodsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(
-        string $merchantId,
-        string $paymentMethodId
-    ): ApiResponse {
+    public function getPaymentMethodSetting(string $merchantId, string $paymentMethodId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}'
@@ -259,7 +255,7 @@ class PaymentMethodsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(
+    public function updatePaymentMethodSetting(
         string $merchantId,
         string $paymentMethodId,
         ?UpdatePaymentMethodInfo $body = null
@@ -334,7 +330,7 @@ class PaymentMethodsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(
+    public function addApplePayDomains(
         string $merchantId,
         string $paymentMethodId,
         ?ApplePayInfo $body = null
@@ -406,10 +402,8 @@ class PaymentMethodsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(
-        string $merchantId,
-        string $paymentMethodId
-    ): ApiResponse {
+    public function getApplePayDomains(string $merchantId, string $paymentMethodId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains'

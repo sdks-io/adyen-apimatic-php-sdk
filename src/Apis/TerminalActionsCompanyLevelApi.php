@@ -46,7 +46,7 @@ class TerminalActionsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalActions(
+    public function listCompanyTerminalActions(
         string $companyId,
         ?int $pageNumber = null,
         ?int $pageSize = null,
@@ -119,7 +119,7 @@ class TerminalActionsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdTerminalActionsActionId(string $companyId, string $actionId): ApiResponse
+    public function getCompanyTerminalAction(string $companyId, string $actionId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,

@@ -42,7 +42,7 @@ class ApiCredentialsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdApiCredentials(
+    public function listCompanyApiCredentials(
         string $companyId,
         ?int $pageNumber = null,
         ?int $pageSize = null
@@ -124,7 +124,7 @@ class ApiCredentialsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdApiCredentials(
+    public function createCompanyApiCredential(
         string $companyId,
         ?CreateCompanyApiCredentialRequest $body = null
     ): ApiResponse {
@@ -189,10 +189,8 @@ class ApiCredentialsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getCompaniesCompanyIdApiCredentialsApiCredentialId(
-        string $companyId,
-        string $apiCredentialId
-    ): ApiResponse {
+    public function getCompanyApiCredential(string $companyId, string $apiCredentialId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/companies/{companyId}/apiCredentials/{apiCredentialId}'
@@ -258,7 +256,7 @@ class ApiCredentialsCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchCompaniesCompanyIdApiCredentialsApiCredentialId(
+    public function updateCompanyApiCredential(
         string $companyId,
         string $apiCredentialId,
         ?UpdateCompanyApiCredentialRequest $body = null

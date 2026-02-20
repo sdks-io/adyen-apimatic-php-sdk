@@ -10,20 +10,20 @@ $utilityApi = $client->getUtilityApi();
 
 ## Methods
 
-* [Post-Apple Pay-Sessions](../../doc/controllers/utility.md#post-apple-pay-sessions)
-* [Post-Origin Keys](../../doc/controllers/utility.md#post-origin-keys)
-* [Post-Paypal-Update Order](../../doc/controllers/utility.md#post-paypal-update-order)
-* [Post-Validate Shopper Id](../../doc/controllers/utility.md#post-validate-shopper-id)
+* [Get Apple Pay Session](../../doc/controllers/utility.md#get-apple-pay-session)
+* [Generate Origin Keys](../../doc/controllers/utility.md#generate-origin-keys)
+* [Update Pay Pal Order](../../doc/controllers/utility.md#update-pay-pal-order)
+* [Validate Shopper Id](../../doc/controllers/utility.md#validate-shopper-id)
 
 
-# Post-Apple Pay-Sessions
+# Get Apple Pay Session
 
 You need to use this endpoint if you have an API-only integration with Apple Pay which uses Adyen's Apple Pay certificate.
 
 The endpoint returns the Apple Pay session data which you need to complete the [Apple Pay session validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab=adyen-certificate-validation_1#complete-apple-pay-session-validation).
 
 ```php
-function postApplePaySessions(?string $idempotencyKey = null, ?ApplePaySessionRequest $body = null): ApiResponse
+function getApplePaySession(?string $idempotencyKey = null, ?ApplePaySessionRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -47,7 +47,7 @@ $body = ApplePaySessionRequestBuilder::init(
 )->build();
 
 $utilityApi = $client->getUtilityApi();
-$apiResponse = $utilityApi->postApplePaySessions(
+$apiResponse = $utilityApi->getApplePaySession(
     null,
     $body
 );
@@ -75,7 +75,7 @@ if ($apiResponse->isSuccess()) {
 ```
 
 
-# Post-Origin Keys
+# Generate Origin Keys
 
 **This endpoint is deprecated.**
 
@@ -84,7 +84,7 @@ This operation takes the origin domains and returns a JSON object containing the
 > If you're still using origin key for your Web Drop-in or Components integration, we recommend [switching to client key](https://docs.adyen.com/development-resources/client-side-authentication/migrate-from-origin-key-to-client-key). This allows you to use a single key for all origins, add or remove origins without generating a new key, and detect the card type from the number entered in your payment form.
 
 ```php
-function postOriginKeys(?string $idempotencyKey = null, ?UtilityRequest $body = null): ApiResponse
+function generateOriginKeys(?string $idempotencyKey = null, ?UtilityRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -110,7 +110,7 @@ $body = UtilityRequestBuilder::init(
 )->build();
 
 $utilityApi = $client->getUtilityApi();
-$apiResponse = $utilityApi->postOriginKeys(
+$apiResponse = $utilityApi->generateOriginKeys(
     null,
     $body
 );
@@ -152,15 +152,12 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Paypal-Update Order
+# Update Pay Pal Order
 
 Updates the order for PayPal Express Checkout. This can be used to update the PayPal lightbox with an updated amount and delivery methods based on the delivery address.
 
 ```php
-function postPaypalUpdateOrder(
-    ?string $idempotencyKey = null,
-    ?PaypalUpdateOrderRequest $body = null
-): ApiResponse
+function updatePayPalOrder(?string $idempotencyKey = null, ?PaypalUpdateOrderRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -217,7 +214,7 @@ $body = PaypalUpdateOrderRequestBuilder::init()
     ->build();
 
 $utilityApi = $client->getUtilityApi();
-$apiResponse = $utilityApi->postPaypalUpdateOrder(
+$apiResponse = $utilityApi->updatePayPalOrder(
     null,
     $body
 );
@@ -256,14 +253,14 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Validate Shopper Id
+# Validate Shopper Id
 
 Validates the shopperId.
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```php
-function postValidateShopperId(ValidateShopperIdRequest $body): ApiResponse
+function validateShopperId(ValidateShopperIdRequest $body): ApiResponse
 ```
 
 ## Parameters
@@ -287,7 +284,7 @@ $body = ValidateShopperIdRequestBuilder::init(
 )->build();
 
 $utilityApi = $client->getUtilityApi();
-$apiResponse = $utilityApi->postValidateShopperId($body);
+$apiResponse = $utilityApi->validateShopperId($body);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());

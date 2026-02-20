@@ -34,7 +34,7 @@ class MyApiCredentialApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMe(): ApiResponse
+    public function getMyApiCredential(): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/me')
             ->server(Server::DEFAULT1)
@@ -88,7 +88,7 @@ class MyApiCredentialApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMeAllowedOrigins(): ApiResponse
+    public function listMyAllowedOrigins(): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/me/allowedOrigins')
             ->server(Server::DEFAULT1)
@@ -145,7 +145,7 @@ class MyApiCredentialApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMeAllowedOrigins(?CreateAllowedOriginRequest $body = null): ApiResponse
+    public function createMyAllowedOrigin(?CreateAllowedOriginRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/me/allowedOrigins')
             ->server(Server::DEFAULT1)
@@ -203,7 +203,7 @@ class MyApiCredentialApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteMeAllowedOriginsOriginId(string $originId): ApiResponse
+    public function deleteMyAllowedOrigin(string $originId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::DELETE, '/me/allowedOrigins/{originId}')
             ->server(Server::DEFAULT1)
@@ -260,7 +260,7 @@ class MyApiCredentialApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMeAllowedOriginsOriginId(string $originId): ApiResponse
+    public function getMyAllowedOrigin(string $originId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/me/allowedOrigins/{originId}')
             ->server(Server::DEFAULT1)
@@ -318,7 +318,7 @@ class MyApiCredentialApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMeGenerateClientKey(): ApiResponse
+    public function generateMyClientKey(): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/me/generateClientKey')
             ->server(Server::DEFAULT1)

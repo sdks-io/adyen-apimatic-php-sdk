@@ -10,18 +10,18 @@ $recurringApi = $client->getRecurringApi();
 
 ## Methods
 
-* [Post-Forward](../../doc/controllers/recurring.md#post-forward)
-* [Get-Stored Payment Methods](../../doc/controllers/recurring.md#get-stored-payment-methods)
-* [Post-Stored Payment Methods](../../doc/controllers/recurring.md#post-stored-payment-methods)
-* [Delete-Stored Payment Methods-Stored Payment Method Id](../../doc/controllers/recurring.md#delete-stored-payment-methods-stored-payment-method-id)
+* [Forward Request](../../doc/controllers/recurring.md#forward-request)
+* [List Stored Payment Methods](../../doc/controllers/recurring.md#list-stored-payment-methods)
+* [Create Stored Payment Method](../../doc/controllers/recurring.md#create-stored-payment-method)
+* [Delete Stored Payment Method](../../doc/controllers/recurring.md#delete-stored-payment-method)
 
 
-# Post-Forward
+# Forward Request
 
 Forwards the payment details you stored with Adyen to a third-party that you specify and returns the response from the third-party. Supports forwarding stored card details or [network tokens](https://docs.adyen.com/online-payments/network-tokenization). For more information, see [Forward stored payment details](https://docs.adyen.com/online-payments/tokenization/forward-payment-details).
 
 ```php
-function postForward(?string $idempotencyKey = null, ?CheckoutForwardRequest $body = null): ApiResponse
+function forwardRequest(?string $idempotencyKey = null, ?CheckoutForwardRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -59,7 +59,7 @@ $body = CheckoutForwardRequestBuilder::init(
     ->build();
 
 $recurringApi = $client->getRecurringApi();
-$apiResponse = $recurringApi->postForward(
+$apiResponse = $recurringApi->forwardRequest(
     null,
     $body
 );
@@ -95,12 +95,15 @@ if ($apiResponse->isSuccess()) {
 ```
 
 
-# Get-Stored Payment Methods
+# List Stored Payment Methods
 
 Lists the tokens for stored payment details for the shopper identified in the path, if there are any available. The token ID can be used with payment requests for the shopper's payment. A summary of the stored details is included.
 
 ```php
-function getStoredPaymentMethods(?string $shopperReference = null, ?string $merchantAccount = null): ApiResponse
+function listStoredPaymentMethods(
+    ?string $shopperReference = null,
+    ?string $merchantAccount = null
+): ApiResponse
 ```
 
 ## Parameters
@@ -118,7 +121,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 
 ```php
 $recurringApi = $client->getRecurringApi();
-$apiResponse = $recurringApi->getStoredPaymentMethods();
+$apiResponse = $recurringApi->listStoredPaymentMethods();
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -164,12 +167,12 @@ if ($apiResponse->isSuccess()) {
 ```
 
 
-# Post-Stored Payment Methods
+# Create Stored Payment Method
 
 Creates a token to store the shopper's payment details. This token can be used for the shopper's future payments.
 
 ```php
-function postStoredPaymentMethods(
+function createStoredPaymentMethod(
     ?string $idempotencyKey = null,
     ?StoredPaymentMethodRequest $body = null
 ): ApiResponse
@@ -207,7 +210,7 @@ $body = StoredPaymentMethodRequestBuilder::init(
     ->build();
 
 $recurringApi = $client->getRecurringApi();
-$apiResponse = $recurringApi->postStoredPaymentMethods(
+$apiResponse = $recurringApi->createStoredPaymentMethod(
     null,
     $body
 );
@@ -241,12 +244,12 @@ if ($apiResponse->isSuccess()) {
 ```
 
 
-# Delete-Stored Payment Methods-Stored Payment Method Id
+# Delete Stored Payment Method
 
 Deletes the token identified in the path. The token can no longer be used with payment requests.
 
 ```php
-function deleteStoredPaymentMethodsStoredPaymentMethodId(
+function deleteStoredPaymentMethod(
     string $storedPaymentMethodId,
     string $shopperReference,
     string $merchantAccount
@@ -275,7 +278,7 @@ $shopperReference = 'shopperReference8';
 $merchantAccount = 'merchantAccount8';
 
 $recurringApi = $client->getRecurringApi();
-$apiResponse = $recurringApi->deleteStoredPaymentMethodsStoredPaymentMethodId(
+$apiResponse = $recurringApi->deleteStoredPaymentMethod(
     $storedPaymentMethodId,
     $shopperReference,
     $merchantAccount

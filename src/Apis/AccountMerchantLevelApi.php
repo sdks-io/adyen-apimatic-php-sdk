@@ -41,7 +41,7 @@ class AccountMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchants(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
+    public function listMerchants(?int $pageNumber = null, ?int $pageSize = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants')
             ->server(Server::DEFAULT1)
@@ -101,7 +101,7 @@ class AccountMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchants(?CreateMerchantRequest $body = null): ApiResponse
+    public function createMerchant(?CreateMerchantRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants')
             ->server(Server::DEFAULT1)
@@ -159,7 +159,7 @@ class AccountMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantId(string $merchantId): ApiResponse
+    public function getMerchant(string $merchantId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}')
             ->server(Server::DEFAULT1)
@@ -223,7 +223,7 @@ class AccountMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdActivate(string $merchantId): ApiResponse
+    public function activateMerchant(string $merchantId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/activate')
             ->server(Server::DEFAULT1)

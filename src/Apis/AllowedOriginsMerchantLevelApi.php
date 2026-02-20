@@ -36,10 +36,8 @@ class AllowedOriginsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(
-        string $merchantId,
-        string $apiCredentialId
-    ): ApiResponse {
+    public function listMerchantApiCredentialOrigins(string $merchantId, string $apiCredentialId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins'
@@ -104,7 +102,7 @@ class AllowedOriginsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(
+    public function createMerchantApiCredentialOrigin(
         string $merchantId,
         string $apiCredentialId,
         ?AllowedOrigin $body = null
@@ -176,7 +174,7 @@ class AllowedOriginsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+    public function deleteMerchantApiCredentialOrigin(
         string $merchantId,
         string $apiCredentialId,
         string $originId
@@ -245,7 +243,7 @@ class AllowedOriginsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(
+    public function getMerchantApiCredentialOrigin(
         string $merchantId,
         string $apiCredentialId,
         string $originId

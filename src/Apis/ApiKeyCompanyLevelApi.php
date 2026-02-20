@@ -33,10 +33,8 @@ class ApiKeyCompanyLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKey(
-        string $companyId,
-        string $apiCredentialId
-    ): ApiResponse {
+    public function generateCompanyApiKey(string $companyId, string $apiCredentialId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::POST,
             '/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey'

@@ -10,13 +10,13 @@ $terminalsettingsCompanylevelApi = $client->getTerminalsettingsCompanylevelApi()
 
 ## Methods
 
-* [Get-Companies-Company Id-Terminal Logos](../../doc/controllers/terminalsettings-companylevel.md#get-companies-company-id-terminal-logos)
-* [Patch-Companies-Company Id-Terminal Logos](../../doc/controllers/terminalsettings-companylevel.md#patch-companies-company-id-terminal-logos)
-* [Get-Companies-Company Id-Terminal Settings](../../doc/controllers/terminalsettings-companylevel.md#get-companies-company-id-terminal-settings)
-* [Patch-Companies-Company Id-Terminal Settings](../../doc/controllers/terminalsettings-companylevel.md#patch-companies-company-id-terminal-settings)
+* [Get Company Terminal Logo](../../doc/controllers/terminalsettings-companylevel.md#get-company-terminal-logo)
+* [Update Company Terminal Logo](../../doc/controllers/terminalsettings-companylevel.md#update-company-terminal-logo)
+* [Get Company Terminal Settings](../../doc/controllers/terminalsettings-companylevel.md#get-company-terminal-settings)
+* [Update Company Terminal Settings](../../doc/controllers/terminalsettings-companylevel.md#update-company-terminal-settings)
 
 
-# Get-Companies-Company Id-Terminal Logos
+# Get Company Terminal Logo
 
 Returns the logo that is configured for a specific payment terminal model at the company identified in the path.
 
@@ -31,7 +31,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getCompaniesCompanyIdTerminalLogos(string $companyId, string $model): ApiResponse
+function getCompanyTerminalLogo(string $companyId, string $model): ApiResponse
 ```
 
 ## Parameters
@@ -53,7 +53,7 @@ $companyId = 'companyId0';
 $model = 'model2';
 
 $terminalSettingsCompanyLevelApi = $client->getTerminalSettingsCompanyLevelApi();
-$apiResponse = $terminalSettingsCompanyLevelApi->getCompaniesCompanyIdTerminalLogos(
+$apiResponse = $terminalSettingsCompanyLevelApi->getCompanyTerminalLogo(
     $companyId,
     $model
 );
@@ -91,7 +91,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Companies-Company Id-Terminal Logos
+# Update Company Terminal Logo
 
 Updates the logo that is configured for a specific payment terminal model at the company identified in the path. You can update the logo for only one terminal model at a time.
 This logo applies to all terminals of the specified model under the company, unless a different logo is configured at a lower level (merchant account, store, or individual terminal).
@@ -106,7 +106,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchCompaniesCompanyIdTerminalLogos(string $companyId, string $model, ?Logo $body = null): ApiResponse
+function updateCompanyTerminalLogo(string $companyId, string $model, ?Logo $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -133,7 +133,7 @@ $body = LogoBuilder::init()
     ->build();
 
 $terminalSettingsCompanyLevelApi = $client->getTerminalSettingsCompanyLevelApi();
-$apiResponse = $terminalSettingsCompanyLevelApi->patchCompaniesCompanyIdTerminalLogos(
+$apiResponse = $terminalSettingsCompanyLevelApi->updateCompanyTerminalLogo(
     $companyId,
     $model,
     $body
@@ -172,7 +172,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Companies-Company Id-Terminal Settings
+# Get Company Terminal Settings
 
 Returns the payment terminal settings that are configured for the company identified in the path. These settings apply to all terminals under the company, unless different values are configured at a lower level (merchant account, store, or individual terminal).
 
@@ -188,7 +188,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getCompaniesCompanyIdTerminalSettings(string $companyId): ApiResponse
+function getCompanyTerminalSettings(string $companyId): ApiResponse
 ```
 
 ## Parameters
@@ -207,7 +207,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $companyId = 'companyId0';
 
 $terminalSettingsCompanyLevelApi = $client->getTerminalSettingsCompanyLevelApi();
-$apiResponse = $terminalSettingsCompanyLevelApi->getCompaniesCompanyIdTerminalSettings($companyId);
+$apiResponse = $terminalSettingsCompanyLevelApi->getCompanyTerminalSettings($companyId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -355,7 +355,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Companies-Company Id-Terminal Settings
+# Update Company Terminal Settings
 
 Updates payment terminal settings for the company identified in the path. These settings apply to all terminals under the company, unless different values are configured at a lower level (merchant account, store, or individual terminal).
 
@@ -374,7 +374,7 @@ For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automatin
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchCompaniesCompanyIdTerminalSettings(string $companyId, ?TerminalSettings $body = null): ApiResponse
+function updateCompanyTerminalSettings(string $companyId, ?TerminalSettings $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -452,7 +452,7 @@ $body = TerminalSettingsBuilder::init()
     ->build();
 
 $terminalSettingsCompanyLevelApi = $client->getTerminalSettingsCompanyLevelApi();
-$apiResponse = $terminalSettingsCompanyLevelApi->patchCompaniesCompanyIdTerminalSettings(
+$apiResponse = $terminalSettingsCompanyLevelApi->updateCompanyTerminalSettings(
     $companyId,
     $body
 );

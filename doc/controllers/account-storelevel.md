@@ -10,17 +10,17 @@ $accountStorelevelApi = $client->getAccountStorelevelApi();
 
 ## Methods
 
-* [Get-Merchants-Merchant Id-Stores](../../doc/controllers/account-storelevel.md#get-merchants-merchant-id-stores)
-* [Post-Merchants-Merchant Id-Stores](../../doc/controllers/account-storelevel.md#post-merchants-merchant-id-stores)
-* [Get-Merchants-Merchant Id-Stores-Store Id](../../doc/controllers/account-storelevel.md#get-merchants-merchant-id-stores-store-id)
-* [Patch-Merchants-Merchant Id-Stores-Store Id](../../doc/controllers/account-storelevel.md#patch-merchants-merchant-id-stores-store-id)
-* [Get-Stores](../../doc/controllers/account-storelevel.md#get-stores)
-* [Post-Stores](../../doc/controllers/account-storelevel.md#post-stores)
-* [Get-Stores-Store Id](../../doc/controllers/account-storelevel.md#get-stores-store-id)
-* [Patch-Stores-Store Id](../../doc/controllers/account-storelevel.md#patch-stores-store-id)
+* [List Merchant Stores](../../doc/controllers/account-storelevel.md#list-merchant-stores)
+* [Create Merchant Store](../../doc/controllers/account-storelevel.md#create-merchant-store)
+* [Get Merchant Store](../../doc/controllers/account-storelevel.md#get-merchant-store)
+* [Update Merchant Store](../../doc/controllers/account-storelevel.md#update-merchant-store)
+* [List Stores](../../doc/controllers/account-storelevel.md#list-stores)
+* [Create Store](../../doc/controllers/account-storelevel.md#create-store)
+* [Get Store](../../doc/controllers/account-storelevel.md#get-store)
+* [Update Store](../../doc/controllers/account-storelevel.md#update-store)
 
 
-# Get-Merchants-Merchant Id-Stores
+# List Merchant Stores
 
 Returns a list of stores for the merchant account identified in the path. The list is grouped into pages as defined by the query parameters.
 
@@ -32,7 +32,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdStores(
+function listMerchantStores(
     string $merchantId,
     ?int $pageNumber = null,
     ?int $pageSize = null,
@@ -59,7 +59,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $merchantId = 'merchantId6';
 
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->getMerchantsMerchantIdStores($merchantId);
+$apiResponse = $accountStoreLevelApi->listMerchantStores($merchantId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -154,7 +154,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Merchants-Merchant Id-Stores
+# Create Merchant Store
 
 Creates a store for the merchant account identified in the path.
 
@@ -165,7 +165,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function postMerchantsMerchantIdStores(string $merchantId, ?StoreCreationRequest $body = null): ApiResponse
+function createMerchantStore(string $merchantId, ?StoreCreationRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -203,7 +203,7 @@ $body = StoreCreationRequestBuilder::init(
     ->build();
 
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->postMerchantsMerchantIdStores(
+$apiResponse = $accountStoreLevelApi->createMerchantStore(
     $merchantId,
     $body
 );
@@ -261,7 +261,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Merchants-Merchant Id-Stores-Store Id
+# Get Merchant Store
 
 Returns the details of the store identified in the path.
 
@@ -273,7 +273,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getMerchantsMerchantIdStoresStoreId(string $merchantId, string $storeId): ApiResponse
+function getMerchantStore(string $merchantId, string $storeId): ApiResponse
 ```
 
 ## Parameters
@@ -295,7 +295,7 @@ $merchantId = 'merchantId6';
 $storeId = 'storeId6';
 
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->getMerchantsMerchantIdStoresStoreId(
+$apiResponse = $accountStoreLevelApi->getMerchantStore(
     $merchantId,
     $storeId
 );
@@ -351,7 +351,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Merchants-Merchant Id-Stores-Store Id
+# Update Merchant Store
 
 Updates the store identified in the path. You can only update some store parameters.
 
@@ -362,11 +362,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchMerchantsMerchantIdStoresStoreId(
-    string $merchantId,
-    string $storeId,
-    ?UpdateStoreRequest $body = null
-): ApiResponse
+function updateMerchantStore(string $merchantId, string $storeId, ?UpdateStoreRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -400,7 +396,7 @@ $body = UpdateStoreRequestBuilder::init()
     ->build();
 
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->patchMerchantsMerchantIdStoresStoreId(
+$apiResponse = $accountStoreLevelApi->updateMerchantStore(
     $merchantId,
     $storeId,
     $body
@@ -459,7 +455,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Stores
+# List Stores
 
 Returns a list of stores. The list is grouped into pages as defined by the query parameters.
 
@@ -471,7 +467,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getStores(
+function listStores(
     ?int $pageNumber = null,
     ?int $pageSize = null,
     ?string $reference = null,
@@ -496,7 +492,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 
 ```php
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->getStores();
+$apiResponse = $accountStoreLevelApi->listStores();
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -591,7 +587,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Post-Stores
+# Create Store
 
 Creates a store for the merchant account specified in the request.
 
@@ -602,7 +598,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function postStores(?StoreCreationWithMerchantCodeRequest $body = null): ApiResponse
+function createStore(?StoreCreationWithMerchantCodeRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -638,7 +634,7 @@ $body = StoreCreationWithMerchantCodeRequestBuilder::init(
     ->build();
 
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->postStores($body);
+$apiResponse = $accountStoreLevelApi->createStore($body);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -693,7 +689,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Get-Stores-Store Id
+# Get Store
 
 Returns the details of the store identified in the path.
 
@@ -705,7 +701,7 @@ To make this request, your API credential must have one of the following [roles]
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function getStoresStoreId(string $storeId): ApiResponse
+function getStore(string $storeId): ApiResponse
 ```
 
 ## Parameters
@@ -724,7 +720,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 $storeId = 'storeId6';
 
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->getStoresStoreId($storeId);
+$apiResponse = $accountStoreLevelApi->getStore($storeId);
 
 // Extracting response status code
 var_dump($apiResponse->getStatusCode());
@@ -778,7 +774,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`RestServiceErrorException`](../../doc/models/rest-service-error-exception.md) |
 
 
-# Patch-Stores-Store Id
+# Update Store
 
 Updates the store identified in the path.
 You can only update some store parameters.
@@ -790,7 +786,7 @@ To make this request, your API credential must have the following [role](https:/
 In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
 
 ```php
-function patchStoresStoreId(string $storeId, ?UpdateStoreRequest $body = null): ApiResponse
+function updateStore(string $storeId, ?UpdateStoreRequest $body = null): ApiResponse
 ```
 
 ## Parameters
@@ -821,7 +817,7 @@ $body = UpdateStoreRequestBuilder::init()
     ->build();
 
 $accountStoreLevelApi = $client->getAccountStoreLevelApi();
-$apiResponse = $accountStoreLevelApi->patchStoresStoreId(
+$apiResponse = $accountStoreLevelApi->updateStore(
     $storeId,
     $body
 );

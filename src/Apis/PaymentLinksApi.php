@@ -37,7 +37,7 @@ class PaymentLinksApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentLinks(?string $idempotencyKey = null, ?PaymentLinkRequest $body = null): ApiResponse
+    public function createPaymentLink(?string $idempotencyKey = null, ?PaymentLinkRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/paymentLinks')
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -90,7 +90,7 @@ class PaymentLinksApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getPaymentLinksLinkId(string $linkId): ApiResponse
+    public function getPaymentLink(string $linkId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/paymentLinks/{linkId}')
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -141,7 +141,7 @@ class PaymentLinksApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchPaymentLinksLinkId(string $linkId, ?UpdatePaymentLinkRequest $body = null): ApiResponse
+    public function updatePaymentLink(string $linkId, ?UpdatePaymentLinkRequest $body = null): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::PATCH, '/paymentLinks/{linkId}')
             ->auth('BasicAuth', 'ApiKeyAuth')

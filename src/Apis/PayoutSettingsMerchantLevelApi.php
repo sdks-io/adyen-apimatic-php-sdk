@@ -39,7 +39,7 @@ class PayoutSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdPayoutSettings(string $merchantId): ApiResponse
+    public function listPayoutSettings(string $merchantId): ApiResponse
     {
         $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/merchants/{merchantId}/payoutSettings')
             ->server(Server::DEFAULT1)
@@ -107,10 +107,8 @@ class PayoutSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postMerchantsMerchantIdPayoutSettings(
-        string $merchantId,
-        ?PayoutSettingsRequest $body = null
-    ): ApiResponse {
+    public function createPayoutSetting(string $merchantId, ?PayoutSettingsRequest $body = null): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/merchants/{merchantId}/payoutSettings')
             ->server(Server::DEFAULT1)
             ->auth('BasicAuth', 'ApiKeyAuth')
@@ -175,10 +173,8 @@ class PayoutSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function deleteMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
-        string $merchantId,
-        string $payoutSettingsId
-    ): ApiResponse {
+    public function deletePayoutSetting(string $merchantId, string $payoutSettingsId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::DELETE,
             '/merchants/{merchantId}/payoutSettings/{payoutSettingsId}'
@@ -243,10 +239,8 @@ class PayoutSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function getMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
-        string $merchantId,
-        string $payoutSettingsId
-    ): ApiResponse {
+    public function getPayoutSetting(string $merchantId, string $payoutSettingsId): ApiResponse
+    {
         $_reqBuilder = $this->requestBuilder(
             RequestMethod::GET,
             '/merchants/{merchantId}/payoutSettings/{payoutSettingsId}'
@@ -314,7 +308,7 @@ class PayoutSettingsMerchantLevelApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function patchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(
+    public function updatePayoutSetting(
         string $merchantId,
         string $payoutSettingsId,
         ?UpdatePayoutSettingsRequest $body = null

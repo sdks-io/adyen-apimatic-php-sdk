@@ -10,15 +10,15 @@ $modificationsApi = $client->getModificationsApi();
 
 ## Methods
 
-* [Post-Cancels](../../doc/controllers/modifications.md#post-cancels)
-* [Post-Payments-Payment Psp Reference-Amount Updates](../../doc/controllers/modifications.md#post-payments-payment-psp-reference-amount-updates)
-* [Post-Payments-Payment Psp Reference-Cancels](../../doc/controllers/modifications.md#post-payments-payment-psp-reference-cancels)
-* [Post-Payments-Payment Psp Reference-Captures](../../doc/controllers/modifications.md#post-payments-payment-psp-reference-captures)
-* [Post-Payments-Payment Psp Reference-Refunds](../../doc/controllers/modifications.md#post-payments-payment-psp-reference-refunds)
-* [Post-Payments-Payment Psp Reference-Reversals](../../doc/controllers/modifications.md#post-payments-payment-psp-reference-reversals)
+* [Cancel Payment](../../doc/controllers/modifications.md#cancel-payment)
+* [Update Payment Amount](../../doc/controllers/modifications.md#update-payment-amount)
+* [Cancel Authorised Payment](../../doc/controllers/modifications.md#cancel-authorised-payment)
+* [Capture Payment](../../doc/controllers/modifications.md#capture-payment)
+* [Refund Payment](../../doc/controllers/modifications.md#refund-payment)
+* [Reverse Payment](../../doc/controllers/modifications.md#reverse-payment)
 
 
-# Post-Cancels
+# Cancel Payment
 
 Cancels the authorisation on a payment that has not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**TECHNICAL_CANCEL** webhook](https://docs.adyen.com/online-payments/cancel#cancellation-webhook).
 
@@ -29,7 +29,10 @@ If you want to cancel a payment but are not sure whether it has been captured, u
 For more information, refer to [Cancel](https://docs.adyen.com/online-payments/cancel).
 
 ```php
-function postCancels(?string $idempotencyKey = null, ?StandalonePaymentCancelRequest $body = null): ApiResponse
+function cancelPayment(
+    ?string $idempotencyKey = null,
+    ?StandalonePaymentCancelRequest $body = null
+): ApiResponse
 ```
 
 ## Parameters
@@ -54,7 +57,7 @@ $body = StandalonePaymentCancelRequestBuilder::init(
     ->build();
 
 $modificationsApi = $client->getModificationsApi();
-$apiResponse = $modificationsApi->postCancels(
+$apiResponse = $modificationsApi->cancelPayment(
     null,
     $body
 );
@@ -96,7 +99,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payments-Payment Psp Reference-Amount Updates
+# Update Payment Amount
 
 Increases or decreases the authorised payment amount and returns a unique reference for this request. You get the outcome of the request asynchronously, in an [**AUTHORISATION_ADJUSTMENT** webhook](https://docs.adyen.com/development-resources/webhooks/webhook-types/#event-codes).
 
@@ -107,7 +110,7 @@ The amount you specify in the request is the updated amount, which is larger or 
 For more information, refer to [Authorisation adjustment](https://docs.adyen.com/online-payments/adjust-authorisation#use-cases).
 
 ```php
-function postPaymentsPaymentPspReferenceAmountUpdates(
+function updatePaymentAmount(
     string $paymentPspReference,
     ?string $idempotencyKey = null,
     ?PaymentAmountUpdateRequest $body = null
@@ -142,7 +145,7 @@ $body = PaymentAmountUpdateRequestBuilder::init(
     ->build();
 
 $modificationsApi = $client->getModificationsApi();
-$apiResponse = $modificationsApi->postPaymentsPaymentPspReferenceAmountUpdates(
+$apiResponse = $modificationsApi->updatePaymentAmount(
     $paymentPspReference,
     null,
     $body
@@ -189,7 +192,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payments-Payment Psp Reference-Cancels
+# Cancel Authorised Payment
 
 Cancels the authorisation on a payment that has not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCELLATION** webhook](https://docs.adyen.com/online-payments/cancel#cancellation-webhook).
 
@@ -200,7 +203,7 @@ If you want to cancel a payment but are not sure whether it has been captured, u
 For more information, refer to [Cancel](https://docs.adyen.com/online-payments/cancel).
 
 ```php
-function postPaymentsPaymentPspReferenceCancels(
+function cancelAuthorisedPayment(
     string $paymentPspReference,
     ?string $idempotencyKey = null,
     ?PaymentCancelRequest $body = null
@@ -231,7 +234,7 @@ $body = PaymentCancelRequestBuilder::init(
     ->build();
 
 $modificationsApi = $client->getModificationsApi();
-$apiResponse = $modificationsApi->postPaymentsPaymentPspReferenceCancels(
+$apiResponse = $modificationsApi->cancelAuthorisedPayment(
     $paymentPspReference,
     null,
     $body
@@ -274,7 +277,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payments-Payment Psp Reference-Captures
+# Capture Payment
 
 Captures an authorised payment and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CAPTURE** webhook](https://docs.adyen.com/online-payments/capture#capture-notification).
 
@@ -285,7 +288,7 @@ You can capture either the full authorised amount or a part of the authorised am
 For more information, refer to [Capture](https://docs.adyen.com/online-payments/capture).
 
 ```php
-function postPaymentsPaymentPspReferenceCaptures(
+function capturePayment(
     string $paymentPspReference,
     ?string $idempotencyKey = null,
     ?PaymentCaptureRequest $body = null
@@ -320,7 +323,7 @@ $body = PaymentCaptureRequestBuilder::init(
     ->build();
 
 $modificationsApi = $client->getModificationsApi();
-$apiResponse = $modificationsApi->postPaymentsPaymentPspReferenceCaptures(
+$apiResponse = $modificationsApi->capturePayment(
     $paymentPspReference,
     null,
     $body
@@ -367,7 +370,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payments-Payment Psp Reference-Refunds
+# Refund Payment
 
 Refunds a payment that has been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**REFUND** webhook](https://docs.adyen.com/online-payments/refund#refund-webhook).
 
@@ -380,7 +383,7 @@ If you want to refund a payment but are not sure whether it has been captured, u
 For more information, refer to [Refund](https://docs.adyen.com/online-payments/refund).
 
 ```php
-function postPaymentsPaymentPspReferenceRefunds(
+function refundPayment(
     string $paymentPspReference,
     ?string $idempotencyKey = null,
     ?PaymentRefundRequest $body = null
@@ -415,7 +418,7 @@ $body = PaymentRefundRequestBuilder::init(
     ->build();
 
 $modificationsApi = $client->getModificationsApi();
-$apiResponse = $modificationsApi->postPaymentsPaymentPspReferenceRefunds(
+$apiResponse = $modificationsApi->refundPayment(
     $paymentPspReference,
     null,
     $body
@@ -462,7 +465,7 @@ if ($apiResponse->isSuccess()) {
 | 500 | Internal Server Error - the server could not process the request. | [`ServiceErrorException`](../../doc/models/service-error-exception.md) |
 
 
-# Post-Payments-Payment Psp Reference-Reversals
+# Reverse Payment
 
 [Refunds](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/refunds) a payment if it has already been captured, and [cancels](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/cancels) a payment if it has not yet been captured. Returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCEL_OR_REFUND** webhook](https://docs.adyen.com/online-payments/reversal/#cancel-or-refund-webhook).
 
@@ -473,7 +476,7 @@ The reversed amount is always the full payment amount.
 For more information, refer to [Reversal](https://docs.adyen.com/online-payments/reversal).
 
 ```php
-function postPaymentsPaymentPspReferenceReversals(
+function reversePayment(
     string $paymentPspReference,
     ?string $idempotencyKey = null,
     ?PaymentReversalRequest $body = null
@@ -504,7 +507,7 @@ $body = PaymentReversalRequestBuilder::init(
     ->build();
 
 $modificationsApi = $client->getModificationsApi();
-$apiResponse = $modificationsApi->postPaymentsPaymentPspReferenceReversals(
+$apiResponse = $modificationsApi->reversePayment(
     $paymentPspReference,
     null,
     $body

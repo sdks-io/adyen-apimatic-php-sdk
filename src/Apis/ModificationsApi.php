@@ -55,7 +55,7 @@ class ModificationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postCancels(
+    public function cancelPayment(
         ?string $idempotencyKey = null,
         ?StandalonePaymentCancelRequest $body = null
     ): ApiResponse {
@@ -126,7 +126,7 @@ class ModificationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentsPaymentPspReferenceAmountUpdates(
+    public function updatePaymentAmount(
         string $paymentPspReference,
         ?string $idempotencyKey = null,
         ?PaymentAmountUpdateRequest $body = null
@@ -202,7 +202,7 @@ class ModificationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentsPaymentPspReferenceCancels(
+    public function cancelAuthorisedPayment(
         string $paymentPspReference,
         ?string $idempotencyKey = null,
         ?PaymentCancelRequest $body = null
@@ -278,7 +278,7 @@ class ModificationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentsPaymentPspReferenceCaptures(
+    public function capturePayment(
         string $paymentPspReference,
         ?string $idempotencyKey = null,
         ?PaymentCaptureRequest $body = null
@@ -358,7 +358,7 @@ class ModificationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentsPaymentPspReferenceRefunds(
+    public function refundPayment(
         string $paymentPspReference,
         ?string $idempotencyKey = null,
         ?PaymentRefundRequest $body = null
@@ -432,7 +432,7 @@ class ModificationsApi extends BaseApi
      *
      * @return ApiResponse Response from the API call
      */
-    public function postPaymentsPaymentPspReferenceReversals(
+    public function reversePayment(
         string $paymentPspReference,
         ?string $idempotencyKey = null,
         ?PaymentReversalRequest $body = null
